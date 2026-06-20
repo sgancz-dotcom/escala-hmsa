@@ -702,9 +702,32 @@ const FIELDS_TROCA = {
 };
 
 // =====================================================
-// LÓGICA
+// LÓGICA DE TURNOS
+// Dia:   07:00 – 18:59 → pertence ao dia atual
+// Noite: 19:00 – 06:59 → pertence ao dia em que começou (19h)
+//   Ex: sábado 23h → escala de sábado noite
+//       domingo 03h → ainda escala de sábado noite (madrugada do sábado)
 // =====================================================
-let currentDay = new Date().getDay();
+
+function calcularDiaEscala() {
+  const agora = new Date();
+  const hora = agora.getHours();
+  // Entre meia-noite e 06:59 → ainda é o plantão noturno de ONTEM
+  if (hora < 7) {
+    const ontem = new Date(agora);
+    ontem.setDate(ontem.getDate() - 1);
+    return { dia: ontem.getDay(), turnoAtual: 'noite' };
+  }
+  // Entre 07:00 e 18:59 → turno diurno de hoje
+  if (hora < 19) {
+    return { dia: agora.getDay(), turnoAtual: 'dia' };
+  }
+  // Entre 19:00 e 23:59 → turno noturno de hoje
+  return { dia: agora.getDay(), turnoAtual: 'noite' };
+}
+
+const { dia: diaInicial, turnoAtual } = calcularDiaEscala();
+let currentDay = diaInicial;
 
 function init() {
   // Preenche seletores de nomes
@@ -723,13 +746,19 @@ function init() {
   const hoje = new Date().toISOString().split('T')[0];
   document.getElementById('pres-data').value = hoje;
 
-  // Badge de hoje
-  const dias = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-  document.getElementById('today-badge').textContent = `Hoje: ${dias[currentDay]}`;
+  // Pré-seleciona o turno correto no form de presença
+  const selectTurno = document.getElementById('pres-turno');
+  selectTurno.value = turnoAtual === 'noite' ? 'Noite' : 'Dia';
 
-  // Seleciona o dia atual
+  // Badge inteligente: mostra o turno ativo
+  const dias = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const hora = new Date().getHours();
+  const turnoLabel = turnoAtual === 'noite' ? '🌙 Noite' : '☀️ Dia';
+  document.getElementById('today-badge').textContent = `${dias[diaInicial]} · ${turnoLabel}`;
+
+  // Seleciona o dia atual e rola até ele
   renderDayButtons();
-  renderEscala(currentDay);
+  renderEscala(currentDay, turnoAtual);
 }
 
 function renderDayButtons() {
@@ -739,17 +768,32 @@ function renderDayButtons() {
     btn.onclick = () => {
       currentDay = d;
       renderDayButtons();
-      renderEscala(d);
+      // Ao trocar de dia manualmente, não força destaque de turno
+      renderEscala(d, null);
     };
   });
 }
 
-function renderEscala(day) {
+function renderEscala(day, turnoDestaque) {
   const dia = ESCALA.dia[day] || [];
   const noite = ESCALA.noite[day] || [];
 
   const listaDia = document.getElementById('lista-dia');
   const listaNiote = document.getElementById('lista-noite');
+  const headerDia = document.getElementById('turno-dia');
+  const headerNoite = document.getElementById('turno-noite');
+
+  // Destaque visual no turno ativo agora
+  if (turnoDestaque === 'dia') {
+    headerDia.style.opacity = '1';
+    headerNoite.style.opacity = '0.45';
+  } else if (turnoDestaque === 'noite') {
+    headerDia.style.opacity = '0.45';
+    headerNoite.style.opacity = '1';
+  } else {
+    headerDia.style.opacity = '1';
+    headerNoite.style.opacity = '1';
+  }
 
   listaDia.innerHTML = dia.length
     ? dia.map(p => cardHTML(p, 'dia')).join('')
@@ -758,6 +802,13 @@ function renderEscala(day) {
   listaNiote.innerHTML = noite.length
     ? noite.map(p => cardHTML(p, 'noite')).join('')
     : '<div class="empty">Nenhum acadêmico no turno noturno</div>';
+
+  // Rola automaticamente até o turno ativo
+  if (turnoDestaque === 'noite') {
+    setTimeout(() => {
+      document.getElementById('turno-noite')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+  }
 }
 
 function cardHTML(p, turno) {
