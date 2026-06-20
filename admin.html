@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Escala HMSA</title>
+<style>
+  :root {
+    --blue: #1a56db; --blue-light: #e8f0fe; --blue-dark: #1239a5;
+    --green: #059669; --green-light: #d1fae5;
+    --amber: #d97706; --amber-light: #fef3c7;
+    --red: #dc2626; --red-light: #fee2e2;
+    --purple: #7c3aed; --purple-light: #ede9fe;
+    --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
+    --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280;
+    --gray-700: #374151; --gray-900: #111827;
+    --radius: 12px; --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray-50); color: var(--gray-900); min-height: 100vh; padding-bottom: 40px; }
+
+  /* Login */
+  .login-screen {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .login-card {
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    padding: 32px 28px;
+    width: 100%; max-width: 360px;
+    box-shadow: var(--shadow);
+  }
+  .login-card h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  .login-card p { font-size: 13px; color: var(--gray-500); margin-bottom: 24px; }
+  .form-group { margin-bottom: 14px; }
+  .form-label { font-size: 12px; font-weight: 600; color: var(--gray-700); display: block; margin-bottom: 6px; }
+  .form-input { width: 100%; padding: 11px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--gray-200); font-size: 14px; color: var(--gray-900); }
+  .form-input:focus { outline: none; border-color: var(--blue); }
+  .btn { display: block; width: 100%; padding: 13px; border-radius: var(--radius-sm); border: none; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
+  .btn:active { opacity: 0.8; }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-green { background: var(--green); color: #fff; }
+  .btn-red { background: var(--red); color: #fff; }
+  .btn-sm { padding: 7px 14px; font-size: 12px; width: auto; border-radius: 6px; }
+  .error-msg { background: var(--red-light); color: #991b1b; font-size: 13px; padding: 10px 14px; border-radius: var(--radius-sm); margin-top: 12px; display: none; }
+
+  /* Admin layout */
+  .admin-screen { display: none; }
+  .admin-header {
+    background: var(--gray-900);
+    color: #fff;
+    padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .admin-header h1 { font-size: 16px; font-weight: 600; }
+  .admin-header p { font-size: 11px; color: var(--gray-400); margin-top: 1px; }
+  .logout-btn { font-size: 12px; color: var(--gray-400); background: none; border: 1px solid var(--gray-600); border-color: #4b5563; padding: 5px 12px; border-radius: 6px; cursor: pointer; }
+
+  .admin-tabs {
+    display: flex;
+    background: #fff;
+    border-bottom: 1px solid var(--gray-200);
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .admin-tabs::-webkit-scrollbar { display: none; }
+  .admin-tab {
+    flex: 1; min-width: 90px;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 12px; font-weight: 500;
+    color: var(--gray-500);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .admin-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+  .admin-content { padding: 16px; }
+
+  /* Cards */
+  .card {
+    background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200);
+    padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow);
+  }
+  .card h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--gray-100); }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 8px 10px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gray-500); background: var(--gray-50); border-bottom: 1px solid var(--gray-200); }
+  td { padding: 10px 10px; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--gray-50); }
+
+  /* Status badges */
+  .badge {
+    display: inline-flex; align-items: center;
+    font-size: 11px; font-weight: 600;
+    padding: 3px 10px; border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-pendente { background: var(--amber-light); color: #92400e; }
+  .badge-aprovado { background: var(--green-light); color: #065f46; }
+  .badge-reprovado { background: var(--red-light); color: #991b1b; }
+  .badge-dia { background: var(--blue-light); color: var(--blue-dark); }
+  .badge-noite { background: var(--purple-light); color: var(--purple); }
+  .badge-12h { background: var(--amber-light); color: #92400e; }
+  .badge-24h { background: var(--green-light); color: #065f46; }
+
+  /* Action buttons inline */
+  .action-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  /* Stats row */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .stat-card { background: var(--gray-50); border-radius: var(--radius-sm); padding: 14px; border: 1px solid var(--gray-200); }
+  .stat-value { font-size: 24px; font-weight: 600; color: var(--gray-900); }
+  .stat-label { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+
+  /* Troca detail */
+  .troca-detail { background: var(--gray-50); border-radius: var(--radius-sm); padding: 12px; margin: 8px 0; font-size: 13px; line-height: 1.7; }
+  .troca-detail strong { color: var(--gray-900); }
+
+  /* AI Analysis box */
+  .ai-box {
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    font-size: 13px; line-height: 1.6;
+    margin: 10px 0;
+    border-left: 3px solid;
+  }
+  .ai-box.ok { background: var(--green-light); border-color: var(--green); color: #065f46; }
+  .ai-box.warn { background: var(--amber-light); border-color: var(--amber); color: #92400e; }
+  .ai-box.block { background: var(--red-light); border-color: var(--red); color: #991b1b; }
+
+  .page-admin { display: none; }
+  .page-admin.active { display: block; }
+
+  /* Presença list */
+  .pres-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--gray-100); font-size: 13px;
+  }
+  .pres-item:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-card">
+    <h1>🔒 Painel Admin</h1>
+    <p>Acesso restrito à secretaria e coordenação</p>
+    <div class="form-group">
+      <label class="form-label">Senha de acesso</label>
+      <input type="password" class="form-input" id="senha-input" placeholder="Digite a senha..."
+        onkeydown="if(event.key==='Enter') fazerLogin()">
+    </div>
+    <button class="btn btn-primary" onclick="fazerLogin()">Entrar</button>
+    <div class="error-msg" id="error-msg">Senha incorreta. Tente novamente.</div>
+    <div style="margin-top:16px; text-align:center">
+      <a href="index.html" style="font-size:13px;color:var(--gray-400);text-decoration:none">← Voltar para a escala</a>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-screen" id="admin-screen">
+  <div class="admin-header">
+    <div>
+      <h1>⚕️ HMSA — Painel Admin</h1>
+      <p>Gestão de escala e acadêmicos</p>
+    </div>
+    <button class="logout-btn" onclick="logout()">Sair</button>
+  </div>
+
+  <div class="admin-tabs">
+    <div class="admin-tab active" onclick="showAdminPage('dashboard')">📊 Visão geral</div>
+    <div class="admin-tab" onclick="showAdminPage('trocas')">🔄 Trocas</div>
+    <div class="admin-tab" onclick="showAdminPage('presencas')">✅ Presenças</div>
+    <div class="admin-tab" onclick="showAdminPage('academicos')">👥 Acadêmicos</div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="admin-content page-admin active" id="page-dashboard">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">39</div>
+        <div class="stat-label">Acadêmicos ativos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-trocas-pend">—</div>
+        <div class="stat-label">Trocas pendentes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-pres-hoje">—</div>
+        <div class="stat-label">Presenças hoje</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Equipes hoje</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📋 Instrucões rápidas</h3>
+      <div style="font-size:13px;line-height:1.8;color:var(--gray-700)">
+        <p>1. <strong>Trocas</strong> chegam automaticamente neste painel via Google Forms.</p>
+        <p>2. Analise a compatibilidade de carga horária (indicada automaticamente).</p>
+        <p>3. Aprove ou rejeite — o acadêmico será notificado por WhatsApp/email.</p>
+        <p>4. Após aprovação, atualize a aba "ESCALA CERTA" no Google Sheets.</p>
+        <br>
+        <p style="color:var(--gray-400);font-size:12px">ℹ️ Em breve: análise automática por IA</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📅 Escala de hoje — <span id="hoje-label">—</span></h3>
+      <div id="dashboard-hoje"></div>
+    </div>
+  </div>
+
+  <!-- TROCAS -->
+  <div class="admin-content page-admin" id="page-trocas">
+    <div class="card">
+      <h3>🔗 Link do Google Forms — Trocas</h3>
+      <p style="font-size:13px;color:var(--gray-500);margin-bottom:10px">Clique para ver as respostas no Sheets</p>
+      <a href="https://docs.google.com/spreadsheets/d/SEU_SHEETS_ID/edit" target="_blank"
+        style="font-size:13px;color:var(--blue);text-decoration:none">
+        📊 Abrir planilha de trocas →
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>🔄 Solicitações recentes</h3>
+      <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">Dados chegam via Google Forms. Veja na planilha ou configure a integração com a API do Claude para análise automática.</p>
+
+      <!-- Exemplo de troca simulada para demonstração -->
+      <div style="border:1px solid var(--gray-200);border-radius:var(--radius-sm);overflow:hidden">
+        <div style="padding:14px;border-bottom:1px solid var(--gray-100)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div>
+              <span style="font-size:14px;font-weight:600">Gustavo Neotti → Pedro Antonio</span>
+              <span style="margin-left:8px" class="badge badge-pendente">Pendente</span>
+            </div>
+            <span style="font-size:11px;color:var(--gray-400)">Hoje</span>
+          </div>
+          <div class="troca-detail">
+            <strong>Cede:</strong> 2ª-feira Noite (Equipe Benjamin Baptista)<br>
+            <strong>Assume:</strong> 3ª-feira Noite (Equipe Chapot Prevost)<br>
+            <strong>Motivo:</strong> Compromisso pessoal
+          </div>
+          <div class="ai-box ok">
+            ✅ <strong>Análise de carga horária:</strong> Ambos têm 24h/semana — troca elegível.<br>
+            ⚠️ Verifique se Pedro Antonio já tem plantão na 3ª antes de aprovar.
+          </div>
+          <div class="action-btns" style="margin-top:10px">
+            <button class="btn btn-green btn-sm" onclick="aprovarTroca(this)">✓ Aprovar</button>
+            <button class="btn btn-red btn-sm" onclick="reprovarTroca(this)">✗ Reprovar</button>
+            <button class="btn btn-sm" style="background:var(--gray-100);color:var(--gray-700)" onclick="verDetalhes()">Ver detalhes</button>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:12px;color:var(--gray-400);margin-top:12px;text-align:center">
+        As solicitações reais aparecem após configurar o Google Forms (ver README.md)
+      </p>
+    </div>
+
+    <!-- Regras de validação -->
+    <div class="card">
+      <h3>📏 Regras de validação de trocas</h3>
+      <div style="font-size:13px;line-height:1.8;color:var(--gray-700)">
+        <p>✅ Carga horária deve ser igual (12h com 12h, 24h com 24h)</p>
+        <p>✅ Ambos os acadêmicos devem estar ativos</p>
+        <p>⚠️ Verificar se o parceiro não tem plantão duplo no mesmo dia</p>
+        <p>⚠️ Verificar se o plantão não ficará descoberto</p>
+        <p>❌ Acadêmico desligado não pode participar de trocas</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESENÇAS -->
+  <div class="admin-content page-admin" id="page-presencas">
+    <div class="card">
+      <h3>📅 Filtrar presenças</h3>
+      <div class="form-group">
+        <label class="form-label">Data</label>
+        <input type="date" class="form-input" id="filtro-data">
+      </div>
+      <button class="btn btn-primary" onclick="filtrarPresencas()" style="margin-top:4px">Filtrar</button>
+    </div>
+
+    <div class="card">
+      <h3>🔗 Respostas do Google Forms</h3>
+      <p style="font-size:13px;color:var(--gray-500);margin-bottom:12px">As confirmações de presença ficam registradas na planilha.</p>
+      <a href="https://docs.google.com/spreadsheets/d/SEU_SHEETS_ID/edit#gid=presencas" target="_blank"
+        style="font-size:13px;color:var(--blue);text-decoration:none">
+        📊 Abrir planilha de presenças →
+      </a>
+    </div>
+
+    <div class="card" id="card-presencas-hoje">
+      <h3>✅ Presenças de hoje</h3>
+      <p style="font-size:13px;color:var(--gray-400)">Configure o Google Forms para ver as presenças aqui automaticamente.</p>
+    </div>
+  </div>
+
+  <!-- ACADÊMICOS -->
+  <div class="admin-content page-admin" id="page-academicos">
+    <div class="card">
+      <h3>👥 Lista completa de acadêmicos</h3>
+      <div class="table-wrap">
+        <table id="tabela-academicos">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Carga</th>
+              <th>Programa</th>
+              <th>Telefone</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-academicos"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// =====================================================
+// CONFIGURAÇÃO — altere aqui
+// =====================================================
+// IMPORTANTE: Troque esta senha antes de publicar!
+const SENHA_ADMIN = "hmsa2026";
+
+// URL da planilha Google Sheets (substitua pelo ID real)
+const SHEETS_URL = "https://docs.google.com/spreadsheets/d/SEU_SHEETS_ID/edit";
+
+// Dados completos dos acadêmicos (apenas admin vê telefone/email)
+const ACADEMICOS_COMPLETO = [
+  { nome: "Amanda Caetano Tostes", carga: 12, programa: "Emergência II", tel: "(32) 988404251", email: "amandact@alu.unifase-rj.edu.br" },
+  { nome: "Ana Paula Oliveira Cavalcante", carga: 24, programa: "Emergência I", tel: "(21) 981948934", email: "anacavalcante1304@gmail.com" },
+  { nome: "Bárbara Van Steen Proner Ramos", carga: 24, programa: "Emergência I", tel: "(21) 972304747", email: "barbaraproner01@gmail.com" },
+  { nome: "Bernardo Reuter Affonso", carga: 12, programa: "Emergência II", tel: "(21) 999560530", email: "bernardoreuter@hotmail.com" },
+  { nome: "Bruna Cirne Nunes Machado", carga: 24, programa: "Emergência I", tel: "(21) 995978261", email: "bbrunamachado@hotmail.com" },
+  { nome: "Camila Mendes Peixoto", carga: 12, programa: "Emergência II", tel: "(24) 999664143", email: "camilamendespeixoto@id.uff.br" },
+  { nome: "Carla Ferreira Franco Vieira", carga: 24, programa: "Emergência I", tel: "(21) 980125857", email: "carla.franco.vieira@gmail.com" },
+  { nome: "Conceição Christina Rigo Vale", carga: 12, programa: "Emergência II", tel: "(21) 982334144", email: "chrisrigov@gmail.com" },
+  { nome: "Daniel David Boianovsky", carga: 12, programa: "Emergência II", tel: "(21) 981536006", email: "danieldb2000@gmail.com" },
+  { nome: "Deborah Custódio Lima", carga: 12, programa: "Emergência II", tel: "(62) 985286894", email: "deborahcustodio@id.uff.br" },
+  { nome: "Felipe Biot Costa Pinto", carga: 24, programa: "Emergência I", tel: "(21) 974438973", email: "felipebiot11@gmail.com" },
+  { nome: "Francisco Luís Nunes Teixeira da Silva", carga: 24, programa: "Emergência I", tel: "(24) 988711735", email: "fnunesteixeiradasilva@gmail.com" },
+  { nome: "Gabriel Rangel Costa Cardoso", carga: 12, programa: "Emergência II", tel: "(21) 985860808", email: "gabrielcardoso0404@gmail.com" },
+  { nome: "Gustavo Neotti do Nascimento", carga: 24, programa: "Emergência I", tel: "(21) 996003123", email: "gustavon2210@gmail.com" },
+  { nome: "Ícaro Maia Silva", carga: 12, programa: "Emergência II", tel: "(21) 999397791", email: "icaromaiasilva@gmail.com" },
+  { nome: "Igor Araujo Gomes", carga: 24, programa: "Emergência I", tel: "(21) 986117906", email: "igorag3001@gmail.com" },
+  { nome: "Isabela Campos Oliveira Rascão", carga: 24, programa: "Emergência I", tel: "(22) 997548466", email: "isa_rascao@hotmail.com" },
+  { nome: "Isabela Carolina Alves do Nascimento", carga: 12, programa: "Emergência II", tel: "(87) 999241461", email: "icarolina@id.uff.br" },
+  { nome: "Isabela Silva Erthal Vieira", carga: 12, programa: "Emergência II", tel: "(22) 997502171", email: "belaerthal@gmail.com" },
+  { nome: "Jéssica Marinho Motta da Silva", carga: 24, programa: "Emergência I", tel: "(21) 990431223", email: "jessica.marinho2012@gmail.com" },
+  { nome: "João Pedro Lopes Pinto Loja", carga: 24, programa: "Emergência I", tel: "(21) 999822388", email: "joaloja@id.uff.br" },
+  { nome: "Julia Azevedo Teixeira de Macedo", carga: 24, programa: "Emergência I", tel: "(21) 967875775", email: "jatm.iphone@gmail.com" },
+  { nome: "Julia Machado Pereira", carga: 24, programa: "Emergência I", tel: "(21) 959595555", email: "juliamachado@edu.unirio.br" },
+  { nome: "Laura Muniz de Lima Leitão", carga: 24, programa: "Emergência I", tel: "(21) 981639511", email: "lauraleitaoml@gmail.com" },
+  { nome: "Letícia Chaves Sias Quadros", carga: 24, programa: "Emergência I", tel: "(21) 996613500", email: "leticsq@gmail.com" },
+  { nome: "Lucas Garcia Deano Outeiro", carga: 12, programa: "Emergência II", tel: "(21) 972086080", email: "lucasouteiro03@gmail.com" },
+  { nome: "Lucas Miossi", carga: 12, programa: "Emergência II", tel: "(27) 996085612", email: "lucasmiossi@id.uff.br" },
+  { nome: "Luís Felipe Jesus Teixeira da Silva", carga: 12, programa: "Emergência II", tel: "(62) 981582669", email: "jesus.luiste@gmail.com" },
+  { nome: "Maria Aparecida Mendes de Oliveira", carga: 12, programa: "Emergência II", tel: "(22) 981258909", email: "ma0224388@gmail.com" },
+  { nome: "Mateus Amado Peralta Boechat", carga: 24, programa: "Emergência I", tel: "(21) 988390604", email: "mateusboechat04@gmail.com" },
+  { nome: "Pedro Antonio Machado Pereira dos Santos", carga: 24, programa: "Emergência I", tel: "(27) 995018308", email: "pedroamps2002@gmail.com" },
+  { nome: "Pedro Henrique Melo da Silva", carga: 24, programa: "Emergência I", tel: "(21) 980515714", email: "opedrohms@edu.unirio.br" },
+  { nome: "Raquel Lopes Emidio", carga: 24, programa: "Emergência I", tel: "(21) 994655697", email: "raquell.emidio@gmail.com" },
+  { nome: "Samara Cristina da Silva Cabral", carga: 24, programa: "Emergência I", tel: "(24) 992671957", email: "cabral.samaracriss@gmail.com" },
+  { nome: "Thiago Magalhães da Cruz Paula", carga: 24, programa: "Emergência I", tel: "(21) 988289714", email: "thiago.magalhaes52@hotmail.com" },
+  { nome: "Thomás Barbosa Leal de Souza", carga: 24, programa: "Emergência I", tel: "(21) 995529567", email: "thomas.lsouza@gmail.com" },
+  { nome: "Valentina Maria Ganem Teixeira", carga: 12, programa: "Emergência II", tel: "(21) 999676226", email: "valentinaganemt@gmail.com" },
+  { nome: "Vitória Maria Porciuncula", carga: 24, programa: "Emergência I", tel: "(21) 970421007", email: "vmporciunculauerj@gmail.com" },
+].sort((a, b) => a.nome.localeCompare(b.nome));
+
+// =====================================================
+function fazerLogin() {
+  const senha = document.getElementById('senha-input').value;
+  if (senha === SENHA_ADMIN) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display = 'block';
+    iniciarAdmin();
+  } else {
+    document.getElementById('error-msg').style.display = 'block';
+    document.getElementById('senha-input').value = '';
+    document.getElementById('senha-input').focus();
+  }
+}
+
+function logout() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('admin-screen').style.display = 'none';
+  document.getElementById('senha-input').value = '';
+}
+
+function showAdminPage(id) {
+  document.querySelectorAll('.page-admin').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function iniciarAdmin() {
+  // Data de hoje
+  const hoje = new Date();
+  const dias = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+  document.getElementById('hoje-label').textContent = dias[hoje.getDay()];
+  document.getElementById('filtro-data').value = hoje.toISOString().split('T')[0];
+
+  // Dashboard escala de hoje
+  const ESCALA_HOJE_DIA = {
+    1: ["Vitória Maria Porciuncula", "Bruna Cirne Nunes Machado"],
+    2: ["Raquel Lopes Emidio", "Gabriel Rangel Cardoso", "Bárbara Van Steen Proner Ramos"],
+    3: ["Ícaro Maia Silva", "Bernardo Reuter Affonso", "Carla Ferreira Franco Vieira"],
+    4: ["Valentina Maria Ganem Teixeira"],
+    5: ["Gustavo Neotti do Nascimento", "Mateus Amado Peralta Boechat", "Samara Cristina da Silva Cabral"],
+    6: ["Isabela Silva Erthal Vieira", "Conceição Christina Rigo Vale", "Jéssica Marinho Motta da Silva", "João Pedro Lopes Pinto Loja", "Isabela Carolina Alves do Nascimento", "Deborah Custódio Lima"],
+    0: ["Julia Machado Pereira", "Igor Araujo Gomes", "Francisco Luís Nunes Teixeira da Silva", "Carla Ferreira Franco Vieira", "Laura Muniz de Lima Leitão", "Thiago Magalhães da Cruz Paula"],
+  };
+  const hojeIdx = hoje.getDay();
+  const hojeNomes = ESCALA_HOJE_DIA[hojeIdx] || [];
+  const dashEl = document.getElementById('dashboard-hoje');
+  if (hojeNomes.length) {
+    dashEl.innerHTML = hojeNomes.map(n => `
+      <div class="pres-item">
+        <span style="font-size:13px;color:var(--gray-700)">${n}</span>
+        <span class="badge badge-dia">Dia</span>
+      </div>`).join('');
+  } else {
+    dashEl.innerHTML = '<p style="font-size:13px;color:var(--gray-400)">Nenhum plantão diurno hoje.</p>';
+  }
+
+  // Tabela de acadêmicos
+  const tbody = document.getElementById('tbody-academicos');
+  tbody.innerHTML = ACADEMICOS_COMPLETO.map(a => `
+    <tr>
+      <td style="font-weight:500">${a.nome}</td>
+      <td><span class="badge ${a.carga === 24 ? 'badge-24h' : 'badge-12h'}">${a.carga}h</span></td>
+      <td style="color:var(--gray-500);font-size:12px">${a.programa}</td>
+      <td><a href="tel:${a.tel}" style="color:var(--blue);text-decoration:none;font-size:12px">${a.tel}</a></td>
+      <td><a href="mailto:${a.email}" style="color:var(--blue);text-decoration:none;font-size:12px">${a.email}</a></td>
+    </tr>`).join('');
+
+  // Stats
+  document.getElementById('stat-trocas-pend').textContent = '—';
+  document.getElementById('stat-pres-hoje').textContent = '—';
+}
+
+function aprovarTroca(btn) {
+  const card = btn.closest('div[style]');
+  card.querySelector('.badge-pendente').className = 'badge badge-aprovado';
+  card.querySelector('.badge-pendente, .badge-aprovado').textContent = 'Aprovado';
+  card.querySelector('.action-btns').innerHTML = '<span style="font-size:12px;color:var(--green)">✅ Troca aprovada — atualize a planilha</span>';
+}
+
+function reprovarTroca(btn) {
+  const card = btn.closest('div[style]');
+  const badge = card.querySelector('.badge');
+  badge.className = 'badge badge-reprovado';
+  badge.textContent = 'Reprovado';
+  card.querySelector('.action-btns').innerHTML = '<span style="font-size:12px;color:var(--red)">❌ Troca reprovada</span>';
+}
+
+function verDetalhes() {
+  alert('Integração com Google Sheets mostrará os detalhes completos após configuração do Forms.');
+}
+
+function filtrarPresencas() {
+  const data = document.getElementById('filtro-data').value;
+  document.getElementById('card-presencas-hoje').querySelector('h3').textContent = `✅ Presenças em ${data}`;
+  document.getElementById('card-presencas-hoje').querySelector('p').textContent =
+    'Configure o Google Forms para ver as presenças automaticamente nesta lista.';
+}
+</script>
+</body>
+</html>
