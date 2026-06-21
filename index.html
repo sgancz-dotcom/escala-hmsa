@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -48,50 +49,14 @@
   .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .header h1 { font-size: 17px; font-weight: 600; color: var(--gray-900); }
   .header p { font-size: 12px; color: var(--gray-500); margin-top: 1px; }
-  .header-badge {
-    background: var(--blue-light);
-    color: var(--blue-dark);
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 20px;
-  }
+  .header-badge { background: var(--blue-light); color: var(--blue-dark); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
   .day-scroll { display: flex; gap: 6px; overflow-x: auto; padding: 0; scrollbar-width: none; }
   .day-scroll::-webkit-scrollbar { display: none; }
-  .day-btn {
-    flex-shrink: 0;
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1.5px solid var(--gray-200);
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    background: #fff;
-    color: var(--gray-500);
-    transition: all 0.15s;
-  }
+  .day-btn { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--gray-200); font-size: 13px; font-weight: 500; cursor: pointer; background: #fff; color: var(--gray-500); transition: all 0.15s; }
   .day-btn.active { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
-  .nav-tabs {
-    display: flex;
-    background: #fff;
-    border-bottom: 1px solid var(--gray-200);
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
+  .nav-tabs { display: flex; background: #fff; border-bottom: 1px solid var(--gray-200); overflow-x: auto; scrollbar-width: none; }
   .nav-tabs::-webkit-scrollbar { display: none; }
-  .nav-tab {
-    flex: 1;
-    min-width: 80px;
-    padding: 12px 8px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--gray-500);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
+  .nav-tab { flex: 1; min-width: 80px; padding: 12px 8px; text-align: center; font-size: 12px; font-weight: 500; color: var(--gray-500); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; }
   .nav-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
   .content { padding: 16px 16px 0; }
   .section-header { display: flex; align-items: center; gap: 8px; margin: 20px 0 10px; }
@@ -100,18 +65,7 @@
   .section-dot.noite { background: var(--purple); }
   .section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); }
   .section-line { flex: 1; height: 1px; background: var(--gray-200); }
-  .person-card {
-    background: #fff;
-    border-radius: var(--radius);
-    border: 1px solid var(--gray-200);
-    border-left: 3px solid;
-    padding: 14px 16px;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: var(--shadow);
-  }
+  .person-card { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); border-left: 3px solid; padding: 14px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow); }
   .person-card.dia { border-left-color: var(--blue); }
   .person-card.noite { border-left-color: var(--purple); }
   .avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
@@ -134,30 +88,9 @@
   .btn-green { background: var(--green); color: #fff; }
   .form-group { margin-bottom: 14px; }
   .form-label { font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; display: block; }
-  .form-select, .form-input {
-    width: 100%;
-    padding: 11px 14px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid var(--gray-200);
-    font-size: 14px;
-    color: var(--gray-900);
-    background: #fff;
-    appearance: none;
-    -webkit-appearance: none;
-  }
+  .form-select, .form-input { width: 100%; padding: 11px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--gray-200); font-size: 14px; color: var(--gray-900); background: #fff; appearance: none; -webkit-appearance: none; }
   .form-select:focus, .form-input:focus { outline: none; border-color: var(--blue); }
-  .form-textarea {
-    width: 100%;
-    padding: 11px 14px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid var(--gray-200);
-    font-size: 14px;
-    color: var(--gray-900);
-    background: #fff;
-    resize: vertical;
-    min-height: 80px;
-    font-family: inherit;
-  }
+  .form-textarea { width: 100%; padding: 11px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--gray-200); font-size: 14px; color: var(--gray-900); background: #fff; resize: vertical; min-height: 80px; font-family: inherit; }
   .form-textarea:focus { outline: none; border-color: var(--blue); }
   .info-box { border-radius: var(--radius-sm); padding: 12px 14px; font-size: 13px; line-height: 1.5; margin-bottom: 14px; }
   .info-box.blue { background: var(--blue-light); color: var(--blue-dark); }
@@ -171,6 +104,8 @@
   .page.active { display: block; }
   .divider { height: 1px; background: var(--gray-100); margin: 16px 0; }
   .bottom-nav-item { position: relative; }
+  .spinner { display: none; width: 20px; height: 20px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -183,7 +118,7 @@
     </div>
     <span class="header-badge" id="today-badge">Carregando...</span>
   </div>
-  <div class="day-scroll" id="day-scroll">
+  <div class="day-scroll">
     <button class="day-btn" data-day="1">2ª</button>
     <button class="day-btn" data-day="2">3ª</button>
     <button class="day-btn" data-day="3">4ª</button>
@@ -251,7 +186,7 @@
       <div class="info-box blue">
         📍 Ao confirmar, a secretaria é notificada automaticamente da sua chegada.
       </div>
-      <button class="btn btn-green" onclick="confirmarPresenca()">Confirmar chegada</button>
+      <button class="btn btn-green" id="btn-presenca" onclick="confirmarPresenca()">Confirmar chegada</button>
     </div>
   </div>
   <div class="success-screen" id="success-presenca">
@@ -321,7 +256,7 @@
         <label class="form-label">Justificativa</label>
         <textarea class="form-textarea" id="troca-motivo" placeholder="Ex: compromisso pessoal, viagem, consulta médica..."></textarea>
       </div>
-      <button class="btn btn-primary" onclick="solicitarTroca()">Enviar solicitação</button>
+      <button class="btn btn-primary" id="btn-troca" onclick="solicitarTroca()">Enviar solicitação</button>
     </div>
   </div>
   <div class="success-screen" id="success-troca">
@@ -350,6 +285,8 @@
 </div>
 
 <script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyhdkvTOxtzefBTXpPegfXDvSGUJ3GW926jzDb-8NvitddkiQsqO0njuyuf9Hnsz99Y0w/exec";
+
 const ESCALA = {
   dia: {
     1: [
@@ -485,27 +422,6 @@ const ACADEMICOS = [
   { nome: "Vitória Maria Porciuncula", carga: 24 },
 ].sort((a, b) => a.nome.localeCompare(b.nome));
 
-const FORM_PRESENCA = "https://docs.google.com/forms/d/e/1FAIpQLSeg10JTLxvwpN38A-KJeENHaKVbs-yMAJ99gRRA2NKWeHd9aw/formResponse";
-const FORM_TROCA    = "https://docs.google.com/forms/d/e/1FAIpQLSd0hiLpR_OjAocFA9fVL1XETRPtQDhRJIC8hVqBBD2_es-JaQ/formResponse";
-
-const FIELDS_PRESENCA = {
-  matricula: "entry.1227776625",
-  nome:      "entry.2124459085",
-  turno:     "entry.289765871",
-  data:      "entry.791948789"
-};
-
-const FIELDS_TROCA = {
-  matricula:   "entry.679915810",
-  solicitante: "entry.735782229",
-  data_sol:    "entry.2065362294",
-  turno_sol:   "entry.1903616423",
-  substituto:  "entry.73748547",
-  data_sub:    "entry.946901955",
-  turno_sub:   "entry.697674243",
-  motivo:      "entry.194396215"
-};
-
 function calcularDiaEscala() {
   const agora = new Date();
   const hora = agora.getHours();
@@ -537,7 +453,6 @@ function init() {
   document.getElementById('pres-data').value = hoje;
   document.getElementById('troca-data-sol').value = hoje;
   document.getElementById('troca-data-sub').value = hoje;
-
   document.getElementById('pres-turno').value = turnoAtual === 'noite' ? 'Noite (19h-07h)' : 'Dia (07h-19h)';
 
   const dias = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
@@ -552,11 +467,7 @@ function renderDayButtons() {
   document.querySelectorAll('.day-btn').forEach(btn => {
     const d = parseInt(btn.dataset.day);
     btn.classList.toggle('active', d === currentDay);
-    btn.onclick = () => {
-      currentDay = d;
-      renderDayButtons();
-      renderEscala(d, null);
-    };
+    btn.onclick = () => { currentDay = d; renderDayButtons(); renderEscala(d, null); };
   });
 }
 
@@ -565,35 +476,16 @@ function renderEscala(day, turnoDestaque) {
   const noite = ESCALA.noite[day] || [];
   const headerDia = document.getElementById('turno-dia');
   const headerNoite = document.getElementById('turno-noite');
-
   if (turnoDestaque === 'dia') { headerDia.style.opacity='1'; headerNoite.style.opacity='0.45'; }
   else if (turnoDestaque === 'noite') { headerDia.style.opacity='0.45'; headerNoite.style.opacity='1'; }
   else { headerDia.style.opacity='1'; headerNoite.style.opacity='1'; }
-
-  document.getElementById('lista-dia').innerHTML = dia.length
-    ? dia.map(p => cardHTML(p, 'dia')).join('')
-    : '<div class="empty">Nenhum acadêmico no turno diurno</div>';
-
-  document.getElementById('lista-noite').innerHTML = noite.length
-    ? noite.map(p => cardHTML(p, 'noite')).join('')
-    : '<div class="empty">Nenhum acadêmico no turno noturno</div>';
-
-  if (turnoDestaque === 'noite') {
-    setTimeout(() => document.getElementById('turno-noite')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
-  }
+  document.getElementById('lista-dia').innerHTML = dia.length ? dia.map(p => cardHTML(p,'dia')).join('') : '<div class="empty">Nenhum acadêmico no turno diurno</div>';
+  document.getElementById('lista-noite').innerHTML = noite.length ? noite.map(p => cardHTML(p,'noite')).join('') : '<div class="empty">Nenhum acadêmico no turno noturno</div>';
+  if (turnoDestaque === 'noite') setTimeout(() => document.getElementById('turno-noite')?.scrollIntoView({behavior:'smooth',block:'start'}), 200);
 }
 
 function cardHTML(p, turno) {
-  return `<div class="person-card ${turno}">
-    <div class="avatar ${turno}">${p.iniciais}</div>
-    <div class="person-info">
-      <div class="person-name">${p.nome}</div>
-      <div class="person-meta">
-        <span class="shift-badge ${turno}">${turno === 'dia' ? 'Dia' : 'Noite'}</span>
-        <span class="team-name">${p.equipe}</span>
-      </div>
-    </div>
-  </div>`;
+  return `<div class="person-card ${turno}"><div class="avatar ${turno}">${p.iniciais}</div><div class="person-info"><div class="person-name">${p.nome}</div><div class="person-meta"><span class="shift-badge ${turno}">${turno==='dia'?'Dia':'Noite'}</span><span class="team-name">${p.equipe}</span></div></div></div>`;
 }
 
 function showPage(id, el) {
@@ -615,79 +507,66 @@ function verificarCargaHoraria() {
   }
 }
 
-function confirmarPresenca() {
+async function enviarDados(dados) {
+  const url = APPS_SCRIPT_URL + '?' + new URLSearchParams(dados).toString();
+  const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
+  return true;
+}
+
+async function confirmarPresenca() {
   const matricula = document.getElementById('pres-matricula').value.trim();
   const nome = document.getElementById('pres-nome').value;
   const turno = document.getElementById('pres-turno').value;
   const data = document.getElementById('pres-data').value;
   if (!matricula || !nome || !data) { alert('Preencha todos os campos obrigatórios.'); return; }
-  enviarForm(FORM_PRESENCA, new URLSearchParams({
-    [FIELDS_PRESENCA.matricula]: matricula,
-    [FIELDS_PRESENCA.nome]: nome,
-    [FIELDS_PRESENCA.turno]: turno,
-    [FIELDS_PRESENCA.data]: data,
-  }));
-  document.getElementById('form-presenca').style.display = 'none';
-  document.getElementById('success-presenca').style.display = 'block';
+
+  const btn = document.getElementById('btn-presenca');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  try {
+    await enviarDados({ tipo: 'presenca', matricula, nome, turno, data });
+    document.getElementById('form-presenca').style.display = 'none';
+    document.getElementById('success-presenca').style.display = 'block';
+  } catch(err) {
+    alert('Erro ao enviar. Tente novamente.');
+    btn.textContent = 'Confirmar chegada';
+    btn.disabled = false;
+  }
 }
 
-function solicitarTroca() {
+async function solicitarTroca() {
   const matricula = document.getElementById('troca-matricula').value.trim();
   const sol       = document.getElementById('troca-solicitante').value;
-  const dataSol   = document.getElementById('troca-data-sol').value;
-  const turnoSol  = document.getElementById('troca-turno-sol').value;
+  const data_sol  = document.getElementById('troca-data-sol').value;
+  const turno_sol = document.getElementById('troca-turno-sol').value;
   const sub       = document.getElementById('troca-parceiro').value;
-  const dataSub   = document.getElementById('troca-data-sub').value;
-  const turnoSub  = document.getElementById('troca-turno-sub').value;
+  const data_sub  = document.getElementById('troca-data-sub').value;
+  const turno_sub = document.getElementById('troca-turno-sub').value;
   const motivo    = document.getElementById('troca-motivo').value.trim();
-  if (!matricula || !sol || !dataSol || !sub || !dataSub || !motivo) { alert('Preencha todos os campos obrigatórios.'); return; }
-  if (sol === sub) { alert('Você não pode trocar com você mesmo.'); return; }
-  enviarForm(FORM_TROCA, new URLSearchParams({
-    [FIELDS_TROCA.matricula]:   matricula,
-    [FIELDS_TROCA.solicitante]: sol,
-    [FIELDS_TROCA.data_sol]:    dataSol,
-    [FIELDS_TROCA.turno_sol]:   turnoSol,
-    [FIELDS_TROCA.substituto]:  sub,
-    [FIELDS_TROCA.data_sub]:    dataSub,
-    [FIELDS_TROCA.turno_sub]:   turnoSub,
-    [FIELDS_TROCA.motivo]:      motivo,
-  }));
-  document.getElementById('form-troca').style.display = 'none';
-  document.getElementById('success-troca').style.display = 'block';
-}
 
-function enviarForm(url, params) {
-  const iframe = document.createElement('iframe');
-  iframe.name = 'hidden_' + Date.now();
-  iframe.style.display = 'none';
-  document.body.appendChild(iframe);
-  const form = document.createElement('form');
-  form.action = url;
-  form.method = 'POST';
-  form.target = iframe.name;
-  params.forEach((val, key) => {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = val;
-    form.appendChild(input);
-  });
-  document.body.appendChild(form);
-  form.submit();
-  setTimeout(() => { document.body.removeChild(form); document.body.removeChild(iframe); }, 3000);
+  if (!matricula || !sol || !data_sol || !sub || !data_sub || !motivo) { alert('Preencha todos os campos obrigatórios.'); return; }
+  if (sol === sub) { alert('Você não pode trocar com você mesmo.'); return; }
+
+  const btn = document.getElementById('btn-troca');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  try {
+    await enviarDados({ tipo: 'troca', matricula, solicitante: sol, data_sol, turno_sol, substituto: sub, data_sub, turno_sub, motivo });
+    document.getElementById('form-troca').style.display = 'none';
+    document.getElementById('success-troca').style.display = 'block';
+  } catch(err) {
+    alert('Erro ao enviar. Tente novamente.');
+    btn.textContent = 'Enviar solicitação';
+    btn.disabled = false;
+  }
 }
 
 function consultarPendentes() {
   const nome = document.getElementById('pend-nome').value;
   if (!nome) { alert('Selecione seu nome.'); return; }
-  document.getElementById('resultado-pendentes').innerHTML = `
-    <div class="action-card">
-      <p style="font-size:13px;color:var(--gray-500);text-align:center;padding:20px 0">
-        📋 As solicitações de troca são analisadas pela secretaria.<br><br>
-        Você será contactado pelo WhatsApp ou e-mail com a decisão.<br><br>
-        <strong>Prazo médio: 1 dia útil</strong>
-      </p>
-    </div>`;
+  document.getElementById('resultado-pendentes').innerHTML = `<div class="action-card"><p style="font-size:13px;color:var(--gray-500);text-align:center;padding:20px 0">📋 As solicitações de troca são analisadas pela secretaria.<br><br>Você será contactado pelo WhatsApp ou e-mail com a decisão.<br><br><strong>Prazo médio: 1 dia útil</strong></p></div>`;
 }
 
 function resetPresenca() {
@@ -695,6 +574,9 @@ function resetPresenca() {
   document.getElementById('success-presenca').style.display = 'none';
   document.getElementById('pres-matricula').value = '';
   document.getElementById('pres-nome').value = '';
+  const btn = document.getElementById('btn-presenca');
+  btn.textContent = 'Confirmar chegada';
+  btn.disabled = false;
 }
 
 function resetTroca() {
@@ -706,6 +588,9 @@ function resetTroca() {
   document.getElementById('troca-motivo').value = '';
   document.getElementById('alerta-carga').style.display = 'none';
   document.getElementById('ok-carga').style.display = 'none';
+  const btn = document.getElementById('btn-troca');
+  btn.textContent = 'Enviar solicitação';
+  btn.disabled = false;
 }
 
 init();
