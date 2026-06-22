@@ -6,208 +6,78 @@
 <title>Admin — Escala HMSA</title>
 <style>
   :root {
-    --blue: #1a56db;
-    --blue-light: #e8f0fe;
-    --blue-dark: #1239a5;
-    --green: #059669;
-    --green-light: #d1fae5;
-    --amber: #d97706;
-    --amber-light: #fef3c7;
-    --red: #dc2626;
-    --red-light: #fee2e2;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-700: #374151;
-    --gray-900: #111827;
-    --radius: 12px;
-    --radius-sm: 8px;
+    --blue: #1a56db; --blue-light: #e8f0fe; --blue-dark: #1239a5;
+    --green: #059669; --green-light: #d1fae5;
+    --amber: #d97706; --amber-light: #fef3c7;
+    --red: #dc2626; --red-light: #fee2e2;
+    --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
+    --gray-400: #9ca3af; --gray-500: #6b7280; --gray-700: #374151; --gray-900: #111827;
+    --radius: 12px; --radius-sm: 8px;
     --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray-50); color: var(--gray-900); min-height: 100vh; }
-
-  /* LOGIN */
-  .login-screen {
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, #1a56db 0%, #1239a5 100%);
-    padding: 20px;
-  }
-  .login-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 40px 32px;
-    width: 100%; max-width: 380px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-  }
+  .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a56db 0%, #1239a5 100%); padding: 20px; }
+  .login-card { background: #fff; border-radius: 16px; padding: 40px 32px; width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
   .login-logo { text-align: center; margin-bottom: 28px; }
-  .login-logo h1 { font-size: 22px; font-weight: 700; color: var(--gray-900); }
-  .login-logo p { font-size: 13px; color: var(--gray-500); margin-top: 4px; }
-  .login-badge {
-    display: inline-block;
-    background: var(--blue-light);
-    color: var(--blue-dark);
-    font-size: 11px; font-weight: 600;
-    padding: 3px 10px; border-radius: 20px;
-    margin-bottom: 8px;
-  }
+  .login-logo h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .login-logo p { font-size: 13px; color: var(--gray-500); }
+  .login-badge { display: inline-block; background: var(--blue-light); color: var(--blue-dark); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
   .form-group { margin-bottom: 16px; }
   .form-label { font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; display: block; }
-  .form-input {
-    width: 100%; padding: 12px 14px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid var(--gray-200);
-    font-size: 14px; color: var(--gray-900); background: #fff;
-  }
-  .form-input:focus { outline: none; border-color: var(--blue); }
-  .btn-login {
-    width: 100%; padding: 13px;
-    background: var(--blue); color: #fff;
-    border: none; border-radius: var(--radius-sm);
-    font-size: 15px; font-weight: 600;
-    cursor: pointer; margin-top: 8px;
-    transition: opacity 0.15s;
-  }
-  .btn-login:hover { opacity: 0.9; }
+  .form-input, .form-textarea-admin { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--gray-200); font-size: 14px; color: var(--gray-900); background: #fff; }
+  .form-input:focus, .form-textarea-admin:focus { outline: none; border-color: var(--blue); }
+  .form-textarea-admin { resize: vertical; min-height: 80px; font-family: inherit; }
+  .btn-login { width: 100%; padding: 13px; background: var(--blue); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; }
   .login-error { color: var(--red); font-size: 13px; text-align: center; margin-top: 12px; display: none; }
-
-  /* APP */
   .app { display: none; }
-  .topbar {
-    background: #fff;
-    border-bottom: 1px solid var(--gray-200);
-    padding: 14px 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 10;
-  }
-  .topbar-left h1 { font-size: 16px; font-weight: 600; }
-  .topbar-left p { font-size: 12px; color: var(--gray-500); }
-  .btn-logout {
-    font-size: 12px; color: var(--gray-500);
-    background: none; border: 1px solid var(--gray-200);
-    padding: 6px 12px; border-radius: 8px; cursor: pointer;
-  }
-
-  /* TABS */
-  .tabs {
-    display: flex; background: #fff;
-    border-bottom: 1px solid var(--gray-200);
-    overflow-x: auto; scrollbar-width: none;
-  }
+  .topbar { background: #fff; border-bottom: 1px solid var(--gray-200); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+  .topbar h1 { font-size: 16px; font-weight: 600; }
+  .topbar p { font-size: 12px; color: var(--gray-500); }
+  .btn-logout { font-size: 12px; color: var(--gray-500); background: none; border: 1px solid var(--gray-200); padding: 6px 12px; border-radius: 8px; cursor: pointer; }
+  .tabs { display: flex; background: #fff; border-bottom: 1px solid var(--gray-200); overflow-x: auto; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
-  .tab {
-    flex: 1; min-width: 100px;
-    padding: 14px 8px; text-align: center;
-    font-size: 12px; font-weight: 500;
-    color: var(--gray-500); cursor: pointer;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap; transition: all 0.15s;
-  }
+  .tab { flex: 1; min-width: 90px; padding: 14px 8px; text-align: center; font-size: 12px; font-weight: 500; color: var(--gray-500); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
   .tab.active { color: var(--blue); border-bottom-color: var(--blue); }
-
-  /* CONTENT */
   .tab-content { display: none; padding: 20px; }
   .tab-content.active { display: block; }
-
-  /* CARDS */
-  .card {
-    background: #fff; border-radius: var(--radius);
-    border: 1px solid var(--gray-200);
-    padding: 20px; margin-bottom: 12px;
-    box-shadow: var(--shadow);
-  }
-  .card-header {
-    display: flex; align-items: flex-start;
-    justify-content: space-between; gap: 12px;
-    margin-bottom: 12px;
-  }
+  .card { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 20px; margin-bottom: 12px; box-shadow: var(--shadow); }
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
   .card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
   .card-sub { font-size: 12px; color: var(--gray-500); line-height: 1.5; }
   .card-actions { display: flex; gap: 8px; flex-shrink: 0; }
-
-  /* BADGES */
-  .badge {
-    display: inline-flex; align-items: center;
-    font-size: 11px; font-weight: 600;
-    padding: 3px 10px; border-radius: 20px;
-  }
+  .badge { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
   .badge-pendente { background: var(--amber-light); color: #92400e; }
   .badge-aprovada { background: var(--green-light); color: #065f46; }
   .badge-recusada { background: var(--red-light); color: #991b1b; }
-
-  /* BUTTONS */
-  .btn {
-    padding: 8px 14px; border-radius: var(--radius-sm);
-    font-size: 12px; font-weight: 600;
-    cursor: pointer; border: none; transition: opacity 0.15s;
-  }
+  .btn { padding: 8px 14px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 600; cursor: pointer; border: none; transition: opacity 0.15s; }
   .btn:active { opacity: 0.8; }
   .btn-green { background: var(--green); color: #fff; }
   .btn-red { background: var(--red); color: #fff; }
+  .btn-blue { background: var(--blue); color: #fff; }
   .btn-gray { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
-
-  /* STATS */
-  .stats-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 12px; margin-bottom: 20px;
-  }
-  .stat-card {
-    background: #fff; border-radius: var(--radius);
-    border: 1px solid var(--gray-200);
-    padding: 16px; text-align: center;
-    box-shadow: var(--shadow);
-  }
+  .btn-full { width: 100%; padding: 12px; font-size: 14px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .stat-card { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 16px; text-align: center; box-shadow: var(--shadow); }
   .stat-number { font-size: 28px; font-weight: 700; color: var(--blue); }
   .stat-label { font-size: 11px; color: var(--gray-500); margin-top: 4px; }
-
-  /* TABLE */
-  .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { background: var(--gray-50); padding: 10px 12px; text-align: left; font-weight: 600; font-size: 11px; color: var(--gray-500); text-transform: uppercase; border-bottom: 1px solid var(--gray-200); }
-  td { padding: 12px; border-bottom: 1px solid var(--gray-100); vertical-align: middle; }
-  tr:last-child td { border-bottom: none; }
-
-  /* LOADING */
   .loading { text-align: center; padding: 40px; color: var(--gray-400); font-size: 14px; }
   .spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid var(--gray-200); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.7s linear infinite; margin-bottom: 8px; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* EMPTY */
   .empty { text-align: center; padding: 48px 20px; color: var(--gray-400); font-size: 14px; }
-
-  /* DIVIDER */
   .divider-row { display: flex; align-items: center; gap: 8px; margin: 16px 0 12px; }
   .divider-label { font-size: 11px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; white-space: nowrap; }
   .divider-line { flex: 1; height: 1px; background: var(--gray-200); }
-
-  /* TOAST */
-  .toast {
-    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-    background: var(--gray-900); color: #fff;
-    padding: 12px 20px; border-radius: 10px;
-    font-size: 13px; font-weight: 500;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    z-index: 100; display: none;
-    animation: fadeup 0.3s ease;
-  }
-  @keyframes fadeup { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
-
-  /* DETAIL */
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--gray-900); color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; display: none; }
   .detail-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 13px; }
-  .detail-label { color: var(--gray-500); min-width: 120px; flex-shrink: 0; }
+  .detail-label { color: var(--gray-500); min-width: 130px; flex-shrink: 0; }
   .detail-value { color: var(--gray-900); font-weight: 500; }
-
   .section-title { font-size: 15px; font-weight: 600; margin-bottom: 16px; }
-
-  @media (max-width: 600px) {
-    .stats-grid { grid-template-columns: repeat(3, 1fr); }
-    .card-header { flex-direction: column; }
-    .card-actions { width: 100%; }
-    .btn { flex: 1; text-align: center; }
-  }
+  .aviso-admin-card { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); border-left: 4px solid var(--blue); padding: 16px; margin-bottom: 10px; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .aviso-admin-info { flex: 1; }
+  .aviso-admin-titulo { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .aviso-admin-msg { font-size: 13px; color: var(--gray-700); line-height: 1.4; margin-bottom: 6px; }
+  .aviso-admin-data { font-size: 11px; color: var(--gray-400); }
 </style>
 </head>
 <body>
@@ -232,7 +102,7 @@
 <!-- APP -->
 <div class="app" id="app">
   <div class="topbar">
-    <div class="topbar-left">
+    <div>
       <h1>🏥 Painel Admin — HMSA</h1>
       <p>Emergência · Acadêmicos</p>
     </div>
@@ -242,6 +112,7 @@
   <div class="tabs">
     <div class="tab active" onclick="showTab('trocas', this)">🔄 Trocas</div>
     <div class="tab" onclick="showTab('presencas', this)">✅ Presenças</div>
+    <div class="tab" onclick="showTab('avisos', this)">📢 Avisos</div>
     <div class="tab" onclick="showTab('relatorios', this)">📊 Relatórios</div>
   </div>
 
@@ -252,10 +123,8 @@
       <div class="stat-card"><div class="stat-number" id="stat-aprovadas" style="color:var(--green)">0</div><div class="stat-label">Aprovadas</div></div>
       <div class="stat-card"><div class="stat-number" id="stat-recusadas" style="color:var(--red)">0</div><div class="stat-label">Recusadas</div></div>
     </div>
-
     <div class="divider-row"><div class="divider-label">Pendentes</div><div class="divider-line"></div></div>
     <div id="lista-pendentes"><div class="loading"><div class="spinner"></div><br>Carregando...</div></div>
-
     <div class="divider-row"><div class="divider-label">Histórico</div><div class="divider-line"></div></div>
     <div id="lista-historico"></div>
   </div>
@@ -267,6 +136,25 @@
       <div class="stat-card"><div class="stat-number" id="stat-pres-total">0</div><div class="stat-label">Total</div></div>
     </div>
     <div id="lista-presencas"><div class="loading"><div class="spinner"></div><br>Carregando...</div></div>
+  </div>
+
+  <!-- AVISOS -->
+  <div class="tab-content" id="tab-avisos">
+    <div class="card">
+      <div class="section-title">📢 Publicar novo aviso</div>
+      <div class="form-group">
+        <label class="form-label">Título</label>
+        <input type="text" class="form-input" id="aviso-titulo" placeholder="Ex: Lembrete de plantão">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mensagem</label>
+        <textarea class="form-textarea-admin" id="aviso-mensagem" placeholder="Digite a mensagem para os acadêmicos..."></textarea>
+      </div>
+      <button class="btn btn-blue btn-full" onclick="publicarAviso()">📢 Publicar aviso</button>
+    </div>
+
+    <div class="divider-row"><div class="divider-label">Avisos ativos</div><div class="divider-line"></div></div>
+    <div id="lista-avisos-admin"><div class="loading"><div class="spinner"></div><br>Carregando...</div></div>
   </div>
 
   <!-- RELATÓRIOS -->
@@ -281,26 +169,18 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycbxu_TCMLJ6K8oNTq8qGYEhqlGmD-k5Li7i9uRCUee_5MbLRnw3UletNpsuu5hO_0tmFAw/exec";
+const API = "https://script.google.com/macros/s/AKfycbxj2VxXDnRoA2JuXxx8vrFneiykxRxQKO-dTeGpNLVhztPlS7stBH4kX9XRVUaVJILrTQ/exec";
 let TOKEN = null;
-let dadosTrocas = [];
-let dadosPresencas = [];
+let dadosTrocas = [], dadosPresencas = [], dadosAvisos = [];
 
-// =====================================================
-// LOGIN
-// =====================================================
 async function fazerLogin() {
   const senha = document.getElementById('login-senha').value;
   if (!senha) return;
-
   const btn = document.querySelector('.btn-login');
-  btn.textContent = 'Verificando...';
-  btn.disabled = true;
-
+  btn.textContent = 'Verificando...'; btn.disabled = true;
   try {
-    const res = await fetch(`${API}?acao=login&senha=${encodeURIComponent(senha)}`, { mode: 'cors' });
+    const res = await fetch(`${API}?acao=login&senha=${encodeURIComponent(senha)}`);
     const data = await res.json();
-
     if (data.status === 'ok') {
       TOKEN = data.token;
       document.getElementById('login-screen').style.display = 'none';
@@ -308,14 +188,12 @@ async function fazerLogin() {
       carregarTudo();
     } else {
       document.getElementById('login-error').style.display = 'block';
-      btn.textContent = 'Entrar';
-      btn.disabled = false;
+      btn.textContent = 'Entrar'; btn.disabled = false;
     }
   } catch(err) {
     document.getElementById('login-error').style.display = 'block';
-    document.getElementById('login-error').textContent = 'Erro de conexão. Tente novamente.';
-    btn.textContent = 'Entrar';
-    btn.disabled = false;
+    document.getElementById('login-error').textContent = 'Erro de conexão.';
+    btn.textContent = 'Entrar'; btn.disabled = false;
   }
 }
 
@@ -327,225 +205,174 @@ function logout() {
   document.getElementById('login-error').style.display = 'none';
 }
 
-// =====================================================
-// CARREGAR DADOS
-// =====================================================
 async function carregarTudo() {
-  await Promise.all([carregarTrocas(), carregarPresencas()]);
+  await Promise.all([carregarTrocas(), carregarPresencas(), carregarAvisosAdmin()]);
 }
 
 async function carregarTrocas() {
   try {
-    const res = await fetch(`${API}?acao=trocas&token=${TOKEN}`, { mode: 'cors' });
+    const res = await fetch(`${API}?acao=trocas&token=${TOKEN}`);
     const data = await res.json();
-    if (data.status === 'ok') {
-      dadosTrocas = data.dados;
-      renderTrocas();
-    }
-  } catch(err) {
-    document.getElementById('lista-pendentes').innerHTML = '<div class="empty">Erro ao carregar trocas.</div>';
-  }
+    if (data.status === 'ok') { dadosTrocas = data.dados; renderTrocas(); }
+  } catch(err) { document.getElementById('lista-pendentes').innerHTML = '<div class="empty">Erro ao carregar.</div>'; }
 }
 
 async function carregarPresencas() {
   try {
-    const res = await fetch(`${API}?acao=presencas&token=${TOKEN}`, { mode: 'cors' });
+    const res = await fetch(`${API}?acao=presencas&token=${TOKEN}`);
     const data = await res.json();
-    if (data.status === 'ok') {
-      dadosPresencas = data.dados;
-      renderPresencas();
-      renderRelatorio();
-    }
-  } catch(err) {
-    document.getElementById('lista-presencas').innerHTML = '<div class="empty">Erro ao carregar presenças.</div>';
-  }
+    if (data.status === 'ok') { dadosPresencas = data.dados; renderPresencas(); renderRelatorio(); }
+  } catch(err) { document.getElementById('lista-presencas').innerHTML = '<div class="empty">Erro ao carregar.</div>'; }
 }
 
-// =====================================================
-// RENDER TROCAS
-// =====================================================
+async function carregarAvisosAdmin() {
+  try {
+    const res = await fetch(`${API}?acao=avisos`);
+    const data = await res.json();
+    dadosAvisos = data.dados || [];
+    renderAvisosAdmin();
+  } catch(err) { document.getElementById('lista-avisos-admin').innerHTML = '<div class="empty">Erro ao carregar.</div>'; }
+}
+
 function renderTrocas() {
   const pendentes = dadosTrocas.filter(t => t.status === 'Pendente');
   const historico = dadosTrocas.filter(t => t.status !== 'Pendente');
-
-  // Stats
   document.getElementById('stats-trocas').style.display = 'grid';
   document.getElementById('stat-pendentes').textContent = pendentes.length;
-  document.getElementById('stat-aprovadas').textContent = dadosTrocas.filter(t => t.status === 'Aprovada').length;
-  document.getElementById('stat-recusadas').textContent = dadosTrocas.filter(t => t.status === 'Recusada').length;
-
-  // Pendentes
-  const listaPend = document.getElementById('lista-pendentes');
-  if (pendentes.length === 0) {
-    listaPend.innerHTML = '<div class="empty">Nenhuma solicitação pendente 🎉</div>';
-  } else {
-    listaPend.innerHTML = pendentes.map(t => cardTroca(t, true)).join('');
-  }
-
-  // Histórico
-  const listaHist = document.getElementById('lista-historico');
-  if (historico.length === 0) {
-    listaHist.innerHTML = '<div class="empty">Nenhum histórico ainda.</div>';
-  } else {
-    listaHist.innerHTML = historico.reverse().map(t => cardTroca(t, false)).join('');
-  }
+  document.getElementById('stat-aprovadas').textContent = dadosTrocas.filter(t=>t.status==='Aprovada').length;
+  document.getElementById('stat-recusadas').textContent = dadosTrocas.filter(t=>t.status==='Recusada').length;
+  document.getElementById('lista-pendentes').innerHTML = pendentes.length ? pendentes.map(t=>cardTroca(t,true)).join('') : '<div class="empty">Nenhuma solicitação pendente 🎉</div>';
+  document.getElementById('lista-historico').innerHTML = historico.length ? historico.slice().reverse().map(t=>cardTroca(t,false)).join('') : '<div class="empty">Nenhum histórico ainda.</div>';
 }
 
 function cardTroca(t, mostrarBotoes) {
-  const dataHora = t.data_hora ? new Date(t.data_hora).toLocaleString('pt-BR') : '—';
-  const badgeClass = t.status === 'Aprovada' ? 'badge-aprovada' : t.status === 'Recusada' ? 'badge-recusada' : 'badge-pendente';
-  const botoes = mostrarBotoes ? `
-    <div class="card-actions">
-      <button class="btn btn-green" onclick="aprovar(${t.linha})">✅ Aprovar</button>
-      <button class="btn btn-red" onclick="recusar(${t.linha})">❌ Recusar</button>
-    </div>` : '';
-
+  const dh = t.data_hora ? new Date(t.data_hora).toLocaleString('pt-BR') : '—';
+  const bc = t.status==='Aprovada'?'badge-aprovada':t.status==='Recusada'?'badge-recusada':'badge-pendente';
+  const btns = mostrarBotoes ? `<div class="card-actions"><button class="btn btn-green" onclick="aprovar(${t.linha})">✅ Aprovar</button><button class="btn btn-red" onclick="recusar(${t.linha})">❌ Recusar</button></div>` : '';
   return `<div class="card" id="troca-${t.linha}">
-    <div class="card-header">
-      <div>
-        <div class="card-title">${t.solicitante || '—'} → ${t.substituto || '—'}</div>
-        <div class="card-sub">Solicitado em ${dataHora}</div>
-      </div>
-      <span class="badge ${badgeClass}">${t.status}</span>
-    </div>
-    <div class="detail-row"><span class="detail-label">Plantão cedido</span><span class="detail-value">${formatarData(t.data_sol)} · ${t.turno_sol || '—'}</span></div>
-    <div class="detail-row"><span class="detail-label">Plantão assumido</span><span class="detail-value">${formatarData(t.data_sub)} · ${t.turno_sub || '—'}</span></div>
-    <div class="detail-row"><span class="detail-label">Matrícula</span><span class="detail-value">${t.matricula || '—'}</span></div>
-    <div class="detail-row"><span class="detail-label">Justificativa</span><span class="detail-value">${t.motivo || '—'}</span></div>
-    ${botoes}
+    <div class="card-header"><div><div class="card-title">${t.solicitante||'—'} → ${t.substituto||'—'}</div><div class="card-sub">${dh}</div></div><span class="badge ${bc}">${t.status}</span></div>
+    <div class="detail-row"><span class="detail-label">Plantão cedido</span><span class="detail-value">${formatarData(t.data_sol)} · ${t.turno_sol||'—'}</span></div>
+    <div class="detail-row"><span class="detail-label">Plantão assumido</span><span class="detail-value">${formatarData(t.data_sub)} · ${t.turno_sub||'—'}</span></div>
+    <div class="detail-row"><span class="detail-label">Matrícula</span><span class="detail-value">${t.matricula||'—'}</span></div>
+    <div class="detail-row"><span class="detail-label">Justificativa</span><span class="detail-value">${t.motivo||'—'}</span></div>
+    ${btns}
   </div>`;
 }
 
-// =====================================================
-// RENDER PRESENÇAS
-// =====================================================
 function renderPresencas() {
   const hoje = new Date().toLocaleDateString('pt-BR');
-  const presHoje = dadosPresencas.filter(p => {
-    const d = p.data_hora ? new Date(p.data_hora).toLocaleDateString('pt-BR') : '';
-    return d === hoje;
-  });
-
+  const presHoje = dadosPresencas.filter(p => p.data_hora && new Date(p.data_hora).toLocaleDateString('pt-BR') === hoje);
   document.getElementById('stats-presencas').style.display = 'grid';
   document.getElementById('stat-pres-hoje').textContent = presHoje.length;
   document.getElementById('stat-pres-total').textContent = dadosPresencas.length;
-
   const lista = document.getElementById('lista-presencas');
-  if (dadosPresencas.length === 0) {
-    lista.innerHTML = '<div class="empty">Nenhuma confirmação de presença ainda.</div>';
-    return;
-  }
-
-  // Agrupa por data
+  if (!dadosPresencas.length) { lista.innerHTML = '<div class="empty">Nenhuma confirmação ainda.</div>'; return; }
   const porData = {};
   dadosPresencas.slice().reverse().forEach(p => {
     const d = p.data || (p.data_hora ? new Date(p.data_hora).toLocaleDateString('pt-BR') : 'Sem data');
     if (!porData[d]) porData[d] = [];
     porData[d].push(p);
   });
-
   let html = '';
-  Object.entries(porData).forEach(([data, lista]) => {
+  Object.entries(porData).forEach(([data, items]) => {
     html += `<div class="divider-row"><div class="divider-label">${formatarData(data)}</div><div class="divider-line"></div></div>`;
-    lista.forEach(p => {
-      html += `<div class="card">
-        <div class="card-title">${p.nome || '—'}</div>
-        <div class="card-sub" style="margin-top:6px">
-          Matrícula: ${p.matricula || '—'} · ${p.turno || '—'} · ${p.data_hora ? new Date(p.data_hora).toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'}) : '—'}
-        </div>
-      </div>`;
+    items.forEach(p => {
+      html += `<div class="card"><div class="card-title">${p.nome||'—'}</div><div class="card-sub" style="margin-top:6px">Matrícula: ${p.matricula||'—'} · ${p.turno||'—'} · ${p.data_hora ? new Date(p.data_hora).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) : '—'}</div></div>`;
     });
   });
   lista.innerHTML = html;
 }
 
-// =====================================================
-// RENDER RELATÓRIO
-// =====================================================
+function renderAvisosAdmin() {
+  const lista = document.getElementById('lista-avisos-admin');
+  if (!dadosAvisos.length) { lista.innerHTML = '<div class="empty">Nenhum aviso ativo.</div>'; return; }
+  lista.innerHTML = dadosAvisos.map(a => `
+    <div class="aviso-admin-card">
+      <div class="aviso-admin-info">
+        <div class="aviso-admin-titulo">${a.titulo}</div>
+        <div class="aviso-admin-msg">${a.mensagem}</div>
+        <div class="aviso-admin-data">${a.data ? new Date(a.data).toLocaleDateString('pt-BR') : ''}</div>
+      </div>
+      <button class="btn btn-red" onclick="deletarAviso(${a.linha})">🗑️ Remover</button>
+    </div>`).join('');
+}
+
 function renderRelatorio() {
   const hoje = new Date().toLocaleDateString('pt-BR');
-  const presHoje = dadosPresencas.filter(p => {
-    const d = p.data_hora ? new Date(p.data_hora).toLocaleDateString('pt-BR') : '';
-    return d === hoje;
-  });
-
-  const pendentes = dadosTrocas.filter(t => t.status === 'Pendente').length;
-  const aprovadas = dadosTrocas.filter(t => t.status === 'Aprovada').length;
-  const recusadas = dadosTrocas.filter(t => t.status === 'Recusada').length;
-
-  // Top presenças
+  const presHoje = dadosPresencas.filter(p => p.data_hora && new Date(p.data_hora).toLocaleDateString('pt-BR') === hoje);
   const contagem = {};
-  dadosPresencas.forEach(p => {
-    if (p.nome) contagem[p.nome] = (contagem[p.nome] || 0) + 1;
-  });
-  const topPresencas = Object.entries(contagem).sort((a,b) => b[1]-a[1]).slice(0, 5);
-
+  dadosPresencas.forEach(p => { if (p.nome) contagem[p.nome] = (contagem[p.nome]||0)+1; });
+  const top = Object.entries(contagem).sort((a,b)=>b[1]-a[1]).slice(0,5);
   document.getElementById('relatorio-content').innerHTML = `
     <div class="detail-row"><span class="detail-label">Presenças hoje</span><span class="detail-value">${presHoje.length}</span></div>
     <div class="detail-row"><span class="detail-label">Total de presenças</span><span class="detail-value">${dadosPresencas.length}</span></div>
-    <div class="detail-row"><span class="detail-label">Trocas pendentes</span><span class="detail-value">${pendentes}</span></div>
-    <div class="detail-row"><span class="detail-label">Trocas aprovadas</span><span class="detail-value">${aprovadas}</span></div>
-    <div class="detail-row"><span class="detail-label">Trocas recusadas</span><span class="detail-value">${recusadas}</span></div>
-    ${topPresencas.length > 0 ? `
-    <div class="divider-row" style="margin-top:16px"><div class="divider-label">Mais presenças registradas</div><div class="divider-line"></div></div>
-    ${topPresencas.map(([nome, qtd]) => `<div class="detail-row"><span class="detail-label">${nome}</span><span class="detail-value">${qtd} plantão${qtd>1?'s':''}</span></div>`).join('')}
-    ` : ''}
+    <div class="detail-row"><span class="detail-label">Trocas pendentes</span><span class="detail-value">${dadosTrocas.filter(t=>t.status==='Pendente').length}</span></div>
+    <div class="detail-row"><span class="detail-label">Trocas aprovadas</span><span class="detail-value">${dadosTrocas.filter(t=>t.status==='Aprovada').length}</span></div>
+    <div class="detail-row"><span class="detail-label">Trocas recusadas</span><span class="detail-value">${dadosTrocas.filter(t=>t.status==='Recusada').length}</span></div>
+    <div class="detail-row"><span class="detail-label">Avisos ativos</span><span class="detail-value">${dadosAvisos.length}</span></div>
+    ${top.length ? `<div class="divider-row" style="margin-top:16px"><div class="divider-label">Mais presenças</div><div class="divider-line"></div></div>${top.map(([n,q])=>`<div class="detail-row"><span class="detail-label">${n}</span><span class="detail-value">${q} plantão${q>1?'s':''}</span></div>`).join('')}` : ''}
   `;
 }
 
-// =====================================================
-// AÇÕES
-// =====================================================
 async function aprovar(linha) {
   try {
-    const res = await fetch(`${API}?acao=aprovar&token=${TOKEN}&linha=${linha}`, { mode: 'cors' });
+    const res = await fetch(`${API}?acao=aprovar&token=${TOKEN}&linha=${linha}`);
     const data = await res.json();
-    if (data.status === 'ok') {
-      mostrarToast('✅ Troca aprovada com sucesso!');
-      await carregarTrocas();
-    }
-  } catch(err) {
-    mostrarToast('Erro ao aprovar. Tente novamente.');
-  }
+    if (data.status==='ok') { mostrarToast('✅ Troca aprovada!'); await carregarTrocas(); }
+  } catch(err) { mostrarToast('Erro ao aprovar.'); }
 }
 
 async function recusar(linha) {
   try {
-    const res = await fetch(`${API}?acao=recusar&token=${TOKEN}&linha=${linha}`, { mode: 'cors' });
+    const res = await fetch(`${API}?acao=recusar&token=${TOKEN}&linha=${linha}`);
     const data = await res.json();
-    if (data.status === 'ok') {
-      mostrarToast('❌ Troca recusada.');
-      await carregarTrocas();
-    }
-  } catch(err) {
-    mostrarToast('Erro ao recusar. Tente novamente.');
-  }
+    if (data.status==='ok') { mostrarToast('❌ Troca recusada.'); await carregarTrocas(); }
+  } catch(err) { mostrarToast('Erro ao recusar.'); }
 }
 
-// =====================================================
-// HELPERS
-// =====================================================
+async function publicarAviso() {
+  const titulo = document.getElementById('aviso-titulo').value.trim();
+  const mensagem = document.getElementById('aviso-mensagem').value.trim();
+  if (!titulo || !mensagem) { alert('Preencha o título e a mensagem.'); return; }
+  try {
+    const params = `acao=publicar_aviso&token=${TOKEN}&titulo=${encodeURIComponent(titulo)}&mensagem=${encodeURIComponent(mensagem)}`;
+    const res = await fetch(`${API}?${params}`);
+    const data = await res.json();
+    if (data.status==='ok') {
+      mostrarToast('📢 Aviso publicado com sucesso!');
+      document.getElementById('aviso-titulo').value = '';
+      document.getElementById('aviso-mensagem').value = '';
+      await carregarAvisosAdmin();
+    }
+  } catch(err) { mostrarToast('Erro ao publicar.'); }
+}
+
+async function deletarAviso(linha) {
+  if (!confirm('Remover este aviso?')) return;
+  try {
+    const res = await fetch(`${API}?acao=deletar_aviso&token=${TOKEN}&linha=${linha}`);
+    const data = await res.json();
+    if (data.status==='ok') { mostrarToast('🗑️ Aviso removido.'); await carregarAvisosAdmin(); }
+  } catch(err) { mostrarToast('Erro ao remover.'); }
+}
+
 function showTab(id, el) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
   el.classList.add('active');
 }
 
 function formatarData(data) {
   if (!data) return '—';
-  if (typeof data === 'string' && data.includes('-')) {
-    const [ano, mes, dia] = data.split('-');
-    return `${dia}/${mes}/${ano}`;
-  }
+  if (typeof data==='string' && data.includes('-')) { const [a,m,d]=data.split('-'); return `${d}/${m}/${a}`; }
   return data;
 }
 
 function mostrarToast(msg) {
-  const toast = document.getElementById('toast');
-  toast.textContent = msg;
-  toast.style.display = 'block';
-  setTimeout(() => { toast.style.display = 'none'; }, 3000);
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.display = 'block';
+  setTimeout(() => t.style.display='none', 3000);
 }
 </script>
 </body>
