@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,27 +7,14 @@
 <title>Escala HMSA — Acadêmicos</title>
 <style>
   :root {
-    --blue: #1a56db;
-    --blue-light: #e8f0fe;
-    --blue-dark: #1239a5;
-    --purple: #7c3aed;
-    --purple-light: #ede9fe;
-    --green: #059669;
-    --green-light: #d1fae5;
-    --amber: #d97706;
-    --amber-light: #fef3c7;
-    --red: #dc2626;
-    --red-light: #fee2e2;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-700: #374151;
-    --gray-900: #111827;
-    --radius: 12px;
-    --radius-sm: 8px;
+    --blue: #1a56db; --blue-light: #e8f0fe; --blue-dark: #1239a5;
+    --purple: #7c3aed; --purple-light: #ede9fe;
+    --green: #059669; --green-light: #d1fae5;
+    --amber: #d97706; --amber-light: #fef3c7;
+    --red: #dc2626; --red-light: #fee2e2;
+    --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
+    --gray-400: #9ca3af; --gray-500: #6b7280; --gray-700: #374151; --gray-900: #111827;
+    --radius: 12px; --radius-sm: 8px;
     --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,27 +28,25 @@
   .login-logo p { font-size: 13px; color: var(--gray-500); }
   .login-badge { display: inline-block; background: var(--blue-light); color: var(--blue-dark); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
   .login-error { color: var(--red); font-size: 13px; text-align: center; margin-top: 10px; display: none; }
-  .btn-login { width: 100%; padding: 13px; background: var(--blue); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: opacity 0.15s; }
-  .btn-login:hover { opacity: 0.9; }
+  .btn-login { width: 100%; padding: 13px; background: var(--blue); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; }
 
   /* APP */
   .app { display: none; }
   .header { background: #fff; border-bottom: 1px solid var(--gray-200); padding: 16px 20px 12px; position: sticky; top: 0; z-index: 10; }
   .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .header h1 { font-size: 17px; font-weight: 600; color: var(--gray-900); }
+  .header h1 { font-size: 17px; font-weight: 600; }
   .header p { font-size: 12px; color: var(--gray-500); margin-top: 1px; }
-  .header-badge { background: var(--blue-light); color: var(--blue-dark); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
-  .header-user { display: flex; align-items: center; gap: 8px; }
+  .header-right { display: flex; align-items: center; gap: 6px; }
   .user-name { font-size: 12px; font-weight: 600; color: var(--blue-dark); background: var(--blue-light); padding: 4px 10px; border-radius: 20px; }
+  .header-badge { background: var(--blue-light); color: var(--blue-dark); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
   .btn-sair { font-size: 11px; color: var(--gray-400); background: none; border: none; cursor: pointer; padding: 4px; }
-
-  .day-scroll { display: flex; gap: 6px; overflow-x: auto; padding: 0; scrollbar-width: none; }
+  .day-scroll { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
   .day-scroll::-webkit-scrollbar { display: none; }
   .day-btn { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--gray-200); font-size: 13px; font-weight: 500; cursor: pointer; background: #fff; color: var(--gray-500); transition: all 0.15s; }
   .day-btn.active { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
   .nav-tabs { display: flex; background: #fff; border-bottom: 1px solid var(--gray-200); overflow-x: auto; scrollbar-width: none; }
   .nav-tabs::-webkit-scrollbar { display: none; }
-  .nav-tab { flex: 1; min-width: 80px; padding: 12px 8px; text-align: center; font-size: 12px; font-weight: 500; color: var(--gray-500); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; }
+  .nav-tab { flex: 1; min-width: 70px; padding: 12px 6px; text-align: center; font-size: 11px; font-weight: 500; color: var(--gray-500); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
   .nav-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
   .content { padding: 16px 16px 0; }
   .section-header { display: flex; align-items: center; gap: 8px; margin: 20px 0 10px; }
@@ -77,7 +63,7 @@
   .avatar.dia { background: var(--blue-light); color: var(--blue-dark); }
   .avatar.noite { background: var(--purple-light); color: var(--purple); }
   .person-info { flex: 1; min-width: 0; }
-  .person-name { font-size: 14px; font-weight: 500; color: var(--gray-900); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+  .person-name { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
   .person-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .shift-badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
   .shift-badge.dia { background: var(--blue-light); color: var(--blue-dark); }
@@ -88,7 +74,7 @@
   .action-card { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 20px; margin-bottom: 12px; box-shadow: var(--shadow); }
   .action-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
   .action-card p { font-size: 13px; color: var(--gray-500); line-height: 1.5; margin-bottom: 16px; }
-  .btn { display: block; width: 100%; padding: 13px; border-radius: var(--radius-sm); border: none; font-size: 14px; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; transition: opacity 0.15s; }
+  .btn { display: block; width: 100%; padding: 13px; border-radius: var(--radius-sm); border: none; font-size: 14px; font-weight: 600; cursor: pointer; text-align: center; transition: opacity 0.15s; }
   .btn:active { opacity: 0.8; }
   .btn-primary { background: var(--blue); color: #fff; }
   .btn-green { background: var(--green); color: #fff; }
@@ -110,18 +96,25 @@
   .page { display: none; }
   .page.active { display: block; }
   .divider { height: 1px; background: var(--gray-100); margin: 16px 0; }
-  .bottom-nav-item { position: relative; }
   .plantao-tag { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; margin: 2px; cursor: pointer; border: 1.5px solid var(--gray-200); background: #fff; color: var(--gray-700); }
   .plantao-tag.dia-tag { border-color: var(--blue); color: var(--blue-dark); background: var(--blue-light); }
   .plantao-tag.noite-tag { border-color: var(--purple); color: var(--purple); background: var(--purple-light); }
   .plantao-tag.selected { box-shadow: 0 0 0 2px var(--gray-900); }
   .plantoes-container { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
   .sem-plantao { font-size: 13px; color: var(--gray-400); font-style: italic; padding: 8px 0; }
+
+  /* AVISOS */
+  .aviso-card { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); border-left: 4px solid var(--blue); padding: 16px; margin-bottom: 10px; box-shadow: var(--shadow); }
+  .aviso-titulo { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--gray-900); }
+  .aviso-msg { font-size: 13px; color: var(--gray-700); line-height: 1.5; margin-bottom: 8px; }
+  .aviso-data { font-size: 11px; color: var(--gray-400); }
+  .aviso-loading { text-align: center; padding: 32px; color: var(--gray-400); font-size: 14px; }
+  .notif-dot { display: inline-block; width: 7px; height: 7px; background: var(--red); border-radius: 50%; margin-left: 3px; vertical-align: middle; }
 </style>
 </head>
 <body>
 
-<!-- TELA DE LOGIN -->
+<!-- LOGIN -->
 <div class="login-screen" id="login-screen">
   <div class="login-card">
     <div class="login-logo">
@@ -138,15 +131,15 @@
   </div>
 </div>
 
-<!-- APP PRINCIPAL -->
+<!-- APP -->
 <div class="app" id="app">
   <div class="header">
     <div class="header-top">
       <div><h1>Escala HMSA</h1><p>Emergência · Acadêmicos</p></div>
-      <div class="header-user">
-        <span class="user-name" id="user-iniciais">--</span>
-        <span class="header-badge" id="today-badge">Carregando...</span>
-        <button class="btn-sair" onclick="fazerLogout()" title="Sair">✕</button>
+      <div class="header-right">
+        <span class="user-name" id="user-nome">--</span>
+        <span class="header-badge" id="today-badge">...</span>
+        <button class="btn-sair" onclick="fazerLogout()">✕</button>
       </div>
     </div>
     <div class="day-scroll">
@@ -162,6 +155,7 @@
 
   <div class="nav-tabs">
     <div class="nav-tab active" onclick="showPage('escala', this)">📋 Escala</div>
+    <div class="nav-tab" onclick="showPage('avisos', this)" id="tab-avisos">📢 Avisos</div>
     <div class="nav-tab" onclick="showPage('presenca', this)">✅ Presença</div>
     <div class="nav-tab" onclick="showPage('troca', this)">🔄 Troca</div>
     <div class="nav-tab" onclick="showPage('pendentes', this)">⏳ Pendentes</div>
@@ -179,12 +173,17 @@
     </div>
   </div>
 
+  <!-- AVISOS -->
+  <div class="page content" id="page-avisos">
+    <div id="lista-avisos"><div class="aviso-loading">Carregando avisos...</div></div>
+  </div>
+
   <!-- PRESENÇA -->
   <div class="page content" id="page-presenca">
     <div id="form-presenca">
       <div class="action-card">
         <h3>✅ Confirmar Presença</h3>
-        <p>Confirme sua presença no plantão de hoje. Faça isso ao chegar no hospital.</p>
+        <p>Confirme sua presença no plantão. Faça isso ao chegar no hospital.</p>
         <div class="form-group">
           <label class="form-label">Matrícula</label>
           <input type="text" class="form-input" id="pres-matricula" disabled>
@@ -204,7 +203,7 @@
           <label class="form-label">Data do plantão</label>
           <input type="date" class="form-input" id="pres-data">
         </div>
-        <div class="info-box blue">📍 Ao confirmar, a secretaria é notificada automaticamente da sua chegada.</div>
+        <div class="info-box blue">📍 Ao confirmar, a secretaria é notificada automaticamente.</div>
         <button class="btn btn-green" id="btn-presenca" onclick="confirmarPresenca()">Confirmar chegada</button>
       </div>
     </div>
@@ -212,8 +211,7 @@
       <div class="success-icon">✅</div>
       <h2>Presença confirmada!</h2>
       <p>Sua chegada foi registrada.<br>Bom plantão!</p>
-      <br>
-      <button class="btn btn-primary" onclick="resetPresenca()">Nova confirmação</button>
+      <br><button class="btn btn-primary" onclick="resetPresenca()">Nova confirmação</button>
     </div>
   </div>
 
@@ -222,23 +220,20 @@
     <div id="form-troca">
       <div class="action-card">
         <h3>🔄 Solicitar Troca de Plantão</h3>
-        <p>Preencha os dados da troca. A secretaria irá analisar e confirmar a viabilidade.</p>
-        <div class="info-box amber">⚠️ Trocas só são possíveis entre acadêmicos com a <strong>mesma carga horária</strong> (12h com 12h, 24h com 24h).</div>
-
+        <p>Preencha os dados da troca. A secretaria irá analisar a viabilidade.</p>
+        <div class="info-box amber">⚠️ Trocas só são possíveis entre acadêmicos com a <strong>mesma carga horária</strong>.</div>
         <div class="form-group">
           <label class="form-label">Seu nome</label>
           <input type="text" class="form-input" id="troca-solicitante-display" disabled>
           <input type="hidden" id="troca-solicitante">
         </div>
-        <div class="form-group" id="grupo-plantoes-sol">
+        <div class="form-group">
           <label class="form-label">Seu plantão (que quer ceder)</label>
           <div class="plantoes-container" id="plantoes-sol"></div>
           <input type="hidden" id="troca-data-sol">
           <input type="hidden" id="troca-turno-sol">
         </div>
-
         <div class="divider"></div>
-
         <div class="form-group">
           <label class="form-label">Nome do substituto</label>
           <select class="form-select" id="troca-parceiro" onchange="atualizarPlantoesParceiro()">
@@ -251,13 +246,11 @@
           <input type="hidden" id="troca-data-sub">
           <input type="hidden" id="troca-turno-sub">
         </div>
-
-        <div id="alerta-carga" class="info-box amber" style="display:none">⚠️ <strong>Atenção:</strong> Os acadêmicos selecionados têm cargas horárias diferentes. A troca pode não ser aprovada.</div>
-        <div id="ok-carga" class="info-box green" style="display:none">✅ Cargas horárias compatíveis. A troca é elegível para aprovação.</div>
-
+        <div id="alerta-carga" class="info-box amber" style="display:none">⚠️ <strong>Atenção:</strong> Cargas horárias diferentes. A troca pode não ser aprovada.</div>
+        <div id="ok-carga" class="info-box green" style="display:none">✅ Cargas horárias compatíveis.</div>
         <div class="form-group">
           <label class="form-label">Justificativa</label>
-          <textarea class="form-textarea" id="troca-motivo" placeholder="Ex: compromisso pessoal, viagem, consulta médica..."></textarea>
+          <textarea class="form-textarea" id="troca-motivo" placeholder="Ex: compromisso pessoal, viagem..."></textarea>
         </div>
         <button class="btn btn-primary" id="btn-troca" onclick="solicitarTroca()">Enviar solicitação</button>
       </div>
@@ -265,9 +258,8 @@
     <div class="success-screen" id="success-troca">
       <div class="success-icon">🔄</div>
       <h2>Solicitação enviada!</h2>
-      <p>A secretaria irá analisar sua solicitação e responderá em breve.<br><br>Acompanhe o status na aba <strong>Pendentes</strong>.</p>
-      <br>
-      <button class="btn btn-primary" onclick="resetTroca()">Nova solicitação</button>
+      <p>A secretaria irá analisar e responderá em breve.</p>
+      <br><button class="btn btn-primary" onclick="resetTroca()">Nova solicitação</button>
     </div>
   </div>
 
@@ -275,7 +267,7 @@
   <div class="page content" id="page-pendentes">
     <div class="action-card">
       <h3>⏳ Minhas solicitações</h3>
-      <p>Veja o status das suas solicitações de troca.</p>
+      <p>As solicitações são analisadas pela secretaria. Você será contactado com a decisão.</p>
       <div class="info-box blue" id="pend-info"></div>
       <button class="btn btn-primary" onclick="consultarPendentes()">Consultar</button>
     </div>
@@ -284,11 +276,8 @@
 </div>
 
 <script>
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7LAhApKBZTDlIrE3qpRDf_kvKHg-B1B0SV7YIBiqvEsa_9H38lBJRRUv4CdEryOPx9g/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxj2VxXDnRoA2JuXxx8vrFneiykxRxQKO-dTeGpNLVhztPlS7stBH4kX9XRVUaVJILrTQ/exec";
 
-// =====================================================
-// MATRÍCULAS — só números (sem pontos e traço)
-// =====================================================
 const MATRICULAS = {
   "3939634": "Amanda Caetano Tostes",
   "3935855": "Ana Paula Oliveira Cavalcante",
@@ -330,50 +319,6 @@ const MATRICULAS = {
   "3935798": "Vitória Maria Porciuncula",
 };
 
-// =====================================================
-// SESSÃO DO USUÁRIO
-// =====================================================
-let usuarioLogado = null;
-
-function fazerLogin() {
-  const matricula = document.getElementById('login-matricula').value.trim();
-  const nome = MATRICULAS[matricula];
-
-  if (!nome) {
-    document.getElementById('login-error').style.display = 'block';
-    return;
-  }
-
-  usuarioLogado = { matricula, nome };
-  sessionStorage.setItem('hmsa_user', JSON.stringify(usuarioLogado));
-
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  iniciarApp();
-}
-
-function fazerLogout() {
-  usuarioLogado = null;
-  sessionStorage.removeItem('hmsa_user');
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('login-matricula').value = '';
-  document.getElementById('login-error').style.display = 'none';
-}
-
-function verificarSessao() {
-  const salvo = sessionStorage.getItem('hmsa_user');
-  if (salvo) {
-    usuarioLogado = JSON.parse(salvo);
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    iniciarApp();
-  }
-}
-
-// =====================================================
-// ESCALA
-// =====================================================
 const ESCALA = {
   dia: {
     1: [
@@ -509,6 +454,38 @@ const ACADEMICOS = [
   { nome: "Vitória Maria Porciuncula", carga: 24 },
 ].sort((a, b) => a.nome.localeCompare(b.nome));
 
+let usuarioLogado = null;
+
+function fazerLogin() {
+  const matricula = document.getElementById('login-matricula').value.trim();
+  const nome = MATRICULAS[matricula];
+  if (!nome) { document.getElementById('login-error').style.display = 'block'; return; }
+  usuarioLogado = { matricula, nome };
+  sessionStorage.setItem('hmsa_user', JSON.stringify(usuarioLogado));
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  iniciarApp();
+}
+
+function fazerLogout() {
+  usuarioLogado = null;
+  sessionStorage.removeItem('hmsa_user');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('login-matricula').value = '';
+  document.getElementById('login-error').style.display = 'none';
+}
+
+function verificarSessao() {
+  const salvo = sessionStorage.getItem('hmsa_user');
+  if (salvo) {
+    usuarioLogado = JSON.parse(salvo);
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    iniciarApp();
+  }
+}
+
 function calcularDiaEscala() {
   const agora = new Date();
   const hora = agora.getHours();
@@ -523,85 +500,69 @@ let currentDay = diaInicial;
 function iniciarApp() {
   const u = usuarioLogado;
   const primeiroNome = u.nome.split(' ')[0];
-  const iniciais = u.nome.split(' ').filter((_,i,a) => i===0||i===a.length-1).map(n=>n[0]).join('');
 
-  // Header
-  document.getElementById('user-iniciais').textContent = primeiroNome;
-
-  // Presença — preenche e bloqueia
+  document.getElementById('user-nome').textContent = primeiroNome;
   document.getElementById('pres-matricula').value = u.matricula;
   document.getElementById('pres-nome').value = u.nome;
-
-  // Troca — preenche solicitante e bloqueia
   document.getElementById('troca-solicitante').value = u.nome;
   document.getElementById('troca-solicitante-display').value = u.nome;
+  document.getElementById('pend-info').textContent = `Solicitações de ${primeiroNome}`;
 
-  // Preenche select de parceiros (excluindo o próprio usuário)
   const sel = document.getElementById('troca-parceiro');
   sel.innerHTML = '<option value="">Selecione o colega...</option>';
   ACADEMICOS.forEach(a => {
     if (a.nome !== u.nome) {
       const opt = document.createElement('option');
-      opt.value = a.nome;
-      opt.textContent = a.nome;
+      opt.value = a.nome; opt.textContent = a.nome;
       sel.appendChild(opt);
     }
   });
 
-  // Pendentes
-  document.getElementById('pend-info').textContent = `Consultando solicitações de ${primeiroNome}...`;
-
-  // Data e turno
   const hoje = new Date().toISOString().split('T')[0];
   document.getElementById('pres-data').value = hoje;
   document.getElementById('pres-turno').value = turnoAtual === 'noite' ? 'Noite (19h-07h)' : 'Dia (07h-19h)';
 
-  // Badge
   const dias = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-  const turnoLabel = turnoAtual === 'noite' ? '🌙 Noite' : '☀️ Dia';
-  document.getElementById('today-badge').textContent = `${dias[diaInicial]} · ${turnoLabel}`;
+  document.getElementById('today-badge').textContent = `${dias[diaInicial]} · ${turnoAtual === 'noite' ? '🌙 Noite' : '☀️ Dia'}`;
 
-  // Plantões do solicitante
-  const plantoesSol = getProximosPlantoes(u.nome);
-  renderPlantoes('plantoes-sol', plantoesSol, 'troca-data-sol', 'troca-turno-sol');
-
+  renderPlantoes('plantoes-sol', getProximosPlantoes(u.nome), 'troca-data-sol', 'troca-turno-sol');
   renderDayButtons();
   renderEscala(currentDay, turnoAtual);
+  carregarAvisos();
 }
 
 function getProximosPlantoes(nomeAcademico, qtd = 8) {
-  const plantoes = [];
-  const hoje = new Date();
-  hoje.setHours(0, 0, 0, 0);
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
   const primeiroNome = nomeAcademico.split(' ')[0].toLowerCase();
   const partesNome = nomeAcademico.toLowerCase().split(' ');
   const slots = [];
-  ['dia', 'noite'].forEach(turno => {
-    Object.entries(ESCALA[turno]).forEach(([diaSemana, lista]) => {
-      const encontrado = lista.find(p => {
-        const pPartes = p.nome.toLowerCase().split(' ');
-        return pPartes[0] === primeiroNome && partesNome.some((parte, i) => i > 0 && pPartes.includes(parte));
+  ['dia','noite'].forEach(turno => {
+    Object.entries(ESCALA[turno]).forEach(([ds, lista]) => {
+      const enc = lista.find(p => {
+        const pp = p.nome.toLowerCase().split(' ');
+        return pp[0] === primeiroNome && partesNome.some((pt,i) => i>0 && pp.includes(pt));
       });
-      if (encontrado) slots.push({ diaSemana: parseInt(diaSemana), turno });
+      if (enc) slots.push({ diaSemana: parseInt(ds), turno });
     });
   });
-  if (slots.length === 0) return [];
-  let data = new Date(hoje);
-  let count = 0, d = 0;
+  if (!slots.length) return [];
+  const plantoes = []; let data = new Date(hoje), count=0, d=0;
   while (count < qtd && d < 90) {
-    const diaSemana = data.getDay();
-    slots.forEach(slot => {
-      if (slot.diaSemana === diaSemana && count < qtd) {
+    const ds = data.getDay();
+    slots.forEach(s => {
+      if (s.diaSemana === ds && count < qtd) {
         const dataStr = data.toISOString().split('T')[0];
-        const turnoLabel = slot.turno === 'dia' ? 'Dia (07h-19h)' : 'Noite (19h-07h)';
         const diasSemana = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-        const label = `${diasSemana[diaSemana]} ${data.getDate()}/${data.getMonth()+1} — ${slot.turno === 'dia' ? '☀️ Dia' : '🌙 Noite'}`;
-        plantoes.push({ data: dataStr, turno: turnoLabel, turnoKey: slot.turno, label });
+        plantoes.push({
+          data: dataStr,
+          turno: s.turno === 'dia' ? 'Dia (07h-19h)' : 'Noite (19h-07h)',
+          turnoKey: s.turno,
+          label: `${diasSemana[ds]} ${data.getDate()}/${data.getMonth()+1} — ${s.turno==='dia'?'☀️ Dia':'🌙 Noite'}`
+        });
         count++;
       }
     });
-    data.setDate(data.getDate() + 1);
-    d++;
+    data.setDate(data.getDate()+1); d++;
   }
   return plantoes;
 }
@@ -609,10 +570,7 @@ function getProximosPlantoes(nomeAcademico, qtd = 8) {
 function renderPlantoes(containerId, plantoes, hiddenDataId, hiddenTurnoId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
-  if (plantoes.length === 0) {
-    container.innerHTML = '<div class="sem-plantao">Nenhum plantão encontrado nos próximos 90 dias.</div>';
-    return;
-  }
+  if (!plantoes.length) { container.innerHTML = '<div class="sem-plantao">Nenhum plantão nos próximos 90 dias.</div>'; return; }
   plantoes.forEach(p => {
     const tag = document.createElement('button');
     tag.type = 'button';
@@ -634,9 +592,8 @@ function atualizarPlantoesParceiro() {
   document.getElementById('troca-data-sub').value = '';
   document.getElementById('troca-turno-sub').value = '';
   if (!nome) { grupo.style.display = 'none'; return; }
-  const plantoes = getProximosPlantoes(nome);
   grupo.style.display = 'block';
-  renderPlantoes('plantoes-par', plantoes, 'troca-data-sub', 'troca-turno-sub');
+  renderPlantoes('plantoes-par', getProximosPlantoes(nome), 'troca-data-sub', 'troca-turno-sub');
   verificarCargaHoraria();
 }
 
@@ -649,16 +606,14 @@ function renderDayButtons() {
 }
 
 function renderEscala(day, turnoDestaque) {
-  const dia = ESCALA.dia[day] || [];
-  const noite = ESCALA.noite[day] || [];
-  const headerDia = document.getElementById('turno-dia');
-  const headerNoite = document.getElementById('turno-noite');
-  if (turnoDestaque === 'dia') { headerDia.style.opacity='1'; headerNoite.style.opacity='0.45'; }
-  else if (turnoDestaque === 'noite') { headerDia.style.opacity='0.45'; headerNoite.style.opacity='1'; }
-  else { headerDia.style.opacity='1'; headerNoite.style.opacity='1'; }
-  document.getElementById('lista-dia').innerHTML = dia.length ? dia.map(p => cardHTML(p,'dia')).join('') : '<div class="empty">Nenhum acadêmico no turno diurno</div>';
-  document.getElementById('lista-noite').innerHTML = noite.length ? noite.map(p => cardHTML(p,'noite')).join('') : '<div class="empty">Nenhum acadêmico no turno noturno</div>';
-  if (turnoDestaque === 'noite') setTimeout(() => document.getElementById('turno-noite')?.scrollIntoView({behavior:'smooth',block:'start'}), 200);
+  const dia = ESCALA.dia[day] || [], noite = ESCALA.noite[day] || [];
+  const hd = document.getElementById('turno-dia'), hn = document.getElementById('turno-noite');
+  if (turnoDestaque==='dia') { hd.style.opacity='1'; hn.style.opacity='0.45'; }
+  else if (turnoDestaque==='noite') { hd.style.opacity='0.45'; hn.style.opacity='1'; }
+  else { hd.style.opacity='1'; hn.style.opacity='1'; }
+  document.getElementById('lista-dia').innerHTML = dia.length ? dia.map(p=>cardHTML(p,'dia')).join('') : '<div class="empty">Nenhum acadêmico no turno diurno</div>';
+  document.getElementById('lista-noite').innerHTML = noite.length ? noite.map(p=>cardHTML(p,'noite')).join('') : '<div class="empty">Nenhum acadêmico no turno noturno</div>';
+  if (turnoDestaque==='noite') setTimeout(()=>document.getElementById('turno-noite')?.scrollIntoView({behavior:'smooth',block:'start'}),200);
 }
 
 function cardHTML(p, turno) {
@@ -668,27 +623,54 @@ function cardHTML(p, turno) {
 }
 
 function showPage(id, el) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
   if (el) el.classList.add('active');
+  if (id === 'avisos') carregarAvisos();
 }
 
 function verificarCargaHoraria() {
   const sol = usuarioLogado?.nome;
   const par = document.getElementById('troca-parceiro').value;
   if (!sol || !par) return;
-  const cargaSol = ACADEMICOS.find(a => a.nome === sol)?.carga;
-  const cargaPar = ACADEMICOS.find(a => a.nome === par)?.carga;
-  if (cargaSol && cargaPar) {
-    document.getElementById('alerta-carga').style.display = cargaSol !== cargaPar ? 'block' : 'none';
-    document.getElementById('ok-carga').style.display = cargaSol === cargaPar ? 'block' : 'none';
+  const cs = ACADEMICOS.find(a=>a.nome===sol)?.carga;
+  const cp = ACADEMICOS.find(a=>a.nome===par)?.carga;
+  if (cs && cp) {
+    document.getElementById('alerta-carga').style.display = cs!==cp ? 'block' : 'none';
+    document.getElementById('ok-carga').style.display = cs===cp ? 'block' : 'none';
+  }
+}
+
+async function carregarAvisos() {
+  const lista = document.getElementById('lista-avisos');
+  lista.innerHTML = '<div class="aviso-loading">Carregando avisos...</div>';
+  try {
+    const res = await fetch(`${APPS_SCRIPT_URL}?acao=avisos`);
+    const data = await res.json();
+    if (data.status === 'ok' && data.dados.length > 0) {
+      lista.innerHTML = data.dados.map(a => `
+        <div class="aviso-card">
+          <div class="aviso-titulo">📢 ${a.titulo}</div>
+          <div class="aviso-msg">${a.mensagem}</div>
+          <div class="aviso-data">${a.data ? new Date(a.data).toLocaleDateString('pt-BR') : ''}</div>
+        </div>`).join('');
+      // Ponto vermelho na aba se há avisos
+      const tab = document.getElementById('tab-avisos');
+      if (!tab.querySelector('.notif-dot')) {
+        tab.innerHTML += '<span class="notif-dot"></span>';
+      }
+    } else {
+      lista.innerHTML = '<div class="aviso-loading">Nenhum aviso no momento.</div>';
+    }
+  } catch(err) {
+    lista.innerHTML = '<div class="aviso-loading">Erro ao carregar avisos.</div>';
   }
 }
 
 async function enviarDados(dados) {
-  const params = Object.entries(dados).map(([k,v]) => encodeURIComponent(k)+'='+encodeURIComponent(v)).join('&');
-  await fetch(APPS_SCRIPT_URL + '?' + params, { method: 'GET', mode: 'no-cors' });
+  const params = Object.entries(dados).map(([k,v])=>encodeURIComponent(k)+'='+encodeURIComponent(v)).join('&');
+  await fetch(APPS_SCRIPT_URL+'?'+params, {method:'GET', mode:'no-cors'});
   return true;
 }
 
@@ -701,39 +683,33 @@ async function confirmarPresenca() {
   const btn = document.getElementById('btn-presenca');
   btn.textContent = 'Enviando...'; btn.disabled = true;
   try {
-    await enviarDados({ tipo: 'presenca', matricula, nome, turno, data });
+    await enviarDados({tipo:'presenca', matricula, nome, turno, data});
     document.getElementById('form-presenca').style.display = 'none';
     document.getElementById('success-presenca').style.display = 'block';
-  } catch(err) {
-    alert('Erro ao enviar. Tente novamente.');
-    btn.textContent = 'Confirmar chegada'; btn.disabled = false;
-  }
+  } catch(err) { alert('Erro ao enviar.'); btn.textContent='Confirmar chegada'; btn.disabled=false; }
 }
 
 async function solicitarTroca() {
   const matricula = usuarioLogado.matricula;
-  const sol       = usuarioLogado.nome;
-  const data_sol  = document.getElementById('troca-data-sol').value;
+  const sol = usuarioLogado.nome;
+  const data_sol = document.getElementById('troca-data-sol').value;
   const turno_sol = document.getElementById('troca-turno-sol').value;
-  const sub       = document.getElementById('troca-parceiro').value;
-  const data_sub  = document.getElementById('troca-data-sub').value;
+  const sub = document.getElementById('troca-parceiro').value;
+  const data_sub = document.getElementById('troca-data-sub').value;
   const turno_sub = document.getElementById('troca-turno-sub').value;
-  const motivo    = document.getElementById('troca-motivo').value.trim();
-  if (!data_sol || !sub || !data_sub || !motivo) { alert('Preencha todos os campos, incluindo selecionar os plantões de ambos.'); return; }
+  const motivo = document.getElementById('troca-motivo').value.trim();
+  if (!data_sol || !sub || !data_sub || !motivo) { alert('Preencha todos os campos, incluindo selecionar os plantões.'); return; }
   const btn = document.getElementById('btn-troca');
   btn.textContent = 'Enviando...'; btn.disabled = true;
   try {
-    await enviarDados({ tipo: 'troca', matricula, solicitante: sol, data_sol, turno_sol, substituto: sub, data_sub, turno_sub, motivo });
+    await enviarDados({tipo:'troca', matricula, solicitante:sol, data_sol, turno_sol, substituto:sub, data_sub, turno_sub, motivo});
     document.getElementById('form-troca').style.display = 'none';
     document.getElementById('success-troca').style.display = 'block';
-  } catch(err) {
-    alert('Erro ao enviar. Tente novamente.');
-    btn.textContent = 'Enviar solicitação'; btn.disabled = false;
-  }
+  } catch(err) { alert('Erro ao enviar.'); btn.textContent='Enviar solicitação'; btn.disabled=false; }
 }
 
 function consultarPendentes() {
-  document.getElementById('resultado-pendentes').innerHTML = `<div class="action-card"><p style="font-size:13px;color:var(--gray-500);text-align:center;padding:20px 0">📋 As solicitações de troca são analisadas pela secretaria.<br><br>Você será contactado pelo WhatsApp ou e-mail com a decisão.<br><br><strong>Prazo médio: 1 dia útil</strong></p></div>`;
+  document.getElementById('resultado-pendentes').innerHTML = `<div class="action-card"><p style="font-size:13px;color:var(--gray-500);text-align:center;padding:20px 0">📋 As solicitações são analisadas pela secretaria.<br><br>Você será contactado pelo WhatsApp ou e-mail com a decisão.<br><br><strong>Prazo médio: 1 dia útil</strong></p></div>`;
 }
 
 function resetPresenca() {
@@ -755,7 +731,6 @@ function resetTroca() {
   btn.textContent = 'Enviar solicitação'; btn.disabled = false;
 }
 
-// Verifica sessão ao carregar
 verificarSessao();
 </script>
 </body>
