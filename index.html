@@ -394,11 +394,18 @@ function getProximosPlantoes(nomeAcademico, qtd = 8) {
   hoje.setHours(0, 0, 0, 0);
 
   // Encontra em quais dias/turnos o acadêmico aparece
+  // Usa primeiro nome + último sobrenome para compatibilidade entre ESCALA e ACADEMICOS
+  const primeiroNome = nomeAcademico.split(' ')[0].toLowerCase();
+  const partesNome = nomeAcademico.toLowerCase().split(' ');
   const slots = [];
   ['dia', 'noite'].forEach(turno => {
     Object.entries(ESCALA[turno]).forEach(([diaSemana, lista]) => {
-      const encontrado = lista.find(p => p.nome === nomeAcademico ||
-        nomeAcademico.startsWith(p.nome.split(' ')[0]) && nomeAcademico.includes(p.nome.split(' ')[p.nome.split(' ').length - 1]));
+      const encontrado = lista.find(p => {
+        const pNome = p.nome.toLowerCase();
+        const pPartes = pNome.split(' ');
+        // Verifica se primeiro nome bate E pelo menos um sobrenome coincide
+        return pPartes[0] === primeiroNome && partesNome.some((parte, i) => i > 0 && pPartes.includes(parte));
+      });
       if (encontrado) slots.push({ diaSemana: parseInt(diaSemana), turno });
     });
   });
