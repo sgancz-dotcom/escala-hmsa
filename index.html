@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -32,11 +31,29 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray-50); color: var(--gray-900); min-height: 100vh; padding-bottom: 80px; }
+
+  /* LOGIN */
+  .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a56db 0%, #1239a5 100%); padding: 20px; }
+  .login-card { background: #fff; border-radius: 16px; padding: 36px 28px; width: 100%; max-width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+  .login-logo { text-align: center; margin-bottom: 28px; }
+  .login-logo h1 { font-size: 22px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+  .login-logo p { font-size: 13px; color: var(--gray-500); }
+  .login-badge { display: inline-block; background: var(--blue-light); color: var(--blue-dark); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+  .login-error { color: var(--red); font-size: 13px; text-align: center; margin-top: 10px; display: none; }
+  .btn-login { width: 100%; padding: 13px; background: var(--blue); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: opacity 0.15s; }
+  .btn-login:hover { opacity: 0.9; }
+
+  /* APP */
+  .app { display: none; }
   .header { background: #fff; border-bottom: 1px solid var(--gray-200); padding: 16px 20px 12px; position: sticky; top: 0; z-index: 10; }
   .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .header h1 { font-size: 17px; font-weight: 600; color: var(--gray-900); }
   .header p { font-size: 12px; color: var(--gray-500); margin-top: 1px; }
   .header-badge { background: var(--blue-light); color: var(--blue-dark); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
+  .header-user { display: flex; align-items: center; gap: 8px; }
+  .user-name { font-size: 12px; font-weight: 600; color: var(--blue-dark); background: var(--blue-light); padding: 4px 10px; border-radius: 20px; }
+  .btn-sair { font-size: 11px; color: var(--gray-400); background: none; border: none; cursor: pointer; padding: 4px; }
+
   .day-scroll { display: flex; gap: 6px; overflow-x: auto; padding: 0; scrollbar-width: none; }
   .day-scroll::-webkit-scrollbar { display: none; }
   .day-btn { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--gray-200); font-size: 13px; font-weight: 500; cursor: pointer; background: #fff; color: var(--gray-500); transition: all 0.15s; }
@@ -55,6 +72,7 @@
   .person-card { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); border-left: 3px solid; padding: 14px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow); }
   .person-card.dia { border-left-color: var(--blue); }
   .person-card.noite { border-left-color: var(--purple); }
+  .person-card.eu { border-left-width: 5px; background: var(--blue-light); }
   .avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
   .avatar.dia { background: var(--blue-light); color: var(--blue-dark); }
   .avatar.noite { background: var(--purple-light); color: var(--purple); }
@@ -65,6 +83,7 @@
   .shift-badge.dia { background: var(--blue-light); color: var(--blue-dark); }
   .shift-badge.noite { background: var(--purple-light); color: var(--purple); }
   .team-name { font-size: 12px; color: var(--gray-400); }
+  .eu-badge { font-size: 10px; font-weight: 700; background: var(--blue); color: #fff; padding: 2px 7px; border-radius: 20px; }
   .empty { text-align: center; padding: 48px 20px; color: var(--gray-400); font-size: 14px; }
   .action-card { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 20px; margin-bottom: 12px; box-shadow: var(--shadow); }
   .action-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
@@ -77,6 +96,7 @@
   .form-label { font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; display: block; }
   .form-select, .form-input { width: 100%; padding: 11px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--gray-200); font-size: 14px; color: var(--gray-900); background: #fff; appearance: none; -webkit-appearance: none; }
   .form-select:focus, .form-input:focus { outline: none; border-color: var(--blue); }
+  .form-input:disabled, .form-select:disabled { background: var(--gray-100); color: var(--gray-500); }
   .form-textarea { width: 100%; padding: 11px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--gray-200); font-size: 14px; color: var(--gray-900); background: #fff; resize: vertical; min-height: 80px; font-family: inherit; }
   .form-textarea:focus { outline: none; border-color: var(--blue); }
   .info-box { border-radius: var(--radius-sm); padding: 12px 14px; font-size: 13px; line-height: 1.5; margin-bottom: 14px; }
@@ -101,157 +121,259 @@
 </head>
 <body>
 
-<div class="header">
-  <div class="header-top">
-    <div><h1>Escala HMSA</h1><p>Emergência · Acadêmicos</p></div>
-    <span class="header-badge" id="today-badge">Carregando...</span>
-  </div>
-  <div class="day-scroll">
-    <button class="day-btn" data-day="1">2ª</button>
-    <button class="day-btn" data-day="2">3ª</button>
-    <button class="day-btn" data-day="3">4ª</button>
-    <button class="day-btn" data-day="4">5ª</button>
-    <button class="day-btn" data-day="5">6ª</button>
-    <button class="day-btn" data-day="6">Sáb</button>
-    <button class="day-btn" data-day="0">Dom</button>
-  </div>
-</div>
-
-<div class="nav-tabs">
-  <div class="nav-tab active" onclick="showPage('escala', this)">📋 Escala</div>
-  <div class="nav-tab" onclick="showPage('presenca', this)">✅ Presença</div>
-  <div class="nav-tab" onclick="showPage('troca', this)">🔄 Troca</div>
-  <div class="nav-tab" onclick="showPage('pendentes', this)">⏳ Pendentes</div>
-</div>
-
-<!-- ESCALA -->
-<div class="page active content" id="page-escala">
-  <div id="turno-dia">
-    <div class="section-header"><div class="section-dot dia"></div><span class="section-title">Turno Diurno</span><div class="section-line"></div></div>
-    <div id="lista-dia"></div>
-  </div>
-  <div id="turno-noite">
-    <div class="section-header"><div class="section-dot noite"></div><span class="section-title">Turno Noturno</span><div class="section-line"></div></div>
-    <div id="lista-noite"></div>
-  </div>
-</div>
-
-<!-- PRESENÇA -->
-<div class="page content" id="page-presenca">
-  <div id="form-presenca">
-    <div class="action-card">
-      <h3>✅ Confirmar Presença</h3>
-      <p>Confirme sua presença no plantão de hoje. Faça isso ao chegar no hospital.</p>
-      <div class="form-group">
-        <label class="form-label">Número de matrícula</label>
-        <input type="text" class="form-input" id="pres-matricula" placeholder="Ex: 123456">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Seu nome</label>
-        <select class="form-select" id="pres-nome">
-          <option value="">Selecione seu nome...</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Turno</label>
-        <select class="form-select" id="pres-turno">
-          <option value="Dia (07h-19h)">Dia (07h–19h)</option>
-          <option value="Noite (19h-07h)">Noite (19h–07h)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Data do plantão</label>
-        <input type="date" class="form-input" id="pres-data">
-      </div>
-      <div class="info-box blue">📍 Ao confirmar, a secretaria é notificada automaticamente da sua chegada.</div>
-      <button class="btn btn-green" id="btn-presenca" onclick="confirmarPresenca()">Confirmar chegada</button>
+<!-- TELA DE LOGIN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-badge">Emergência · HMSA</div>
+      <h1>Escala Acadêmicos</h1>
+      <p>Digite sua matrícula para entrar</p>
     </div>
-  </div>
-  <div class="success-screen" id="success-presenca">
-    <div class="success-icon">✅</div>
-    <h2>Presença confirmada!</h2>
-    <p>Sua chegada foi registrada.<br>Bom plantão!</p>
-    <br>
-    <button class="btn btn-primary" onclick="resetPresenca()">Nova confirmação</button>
-  </div>
-</div>
-
-<!-- TROCA -->
-<div class="page content" id="page-troca">
-  <div id="form-troca">
-    <div class="action-card">
-      <h3>🔄 Solicitar Troca de Plantão</h3>
-      <p>Preencha os dados da troca. A secretaria irá analisar e confirmar a viabilidade.</p>
-      <div class="info-box amber">⚠️ Trocas só são possíveis entre acadêmicos com a <strong>mesma carga horária</strong> (12h com 12h, 24h com 24h).</div>
-
-      <div class="form-group">
-        <label class="form-label">Seu número de matrícula</label>
-        <input type="text" class="form-input" id="troca-matricula" placeholder="Ex: 123456">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Seu nome</label>
-        <select class="form-select" id="troca-solicitante" onchange="atualizarPlantoesSolicitante()">
-          <option value="">Selecione seu nome...</option>
-        </select>
-      </div>
-      <div class="form-group" id="grupo-plantoes-sol" style="display:none">
-        <label class="form-label">Seu plantão (que quer ceder)</label>
-        <div class="plantoes-container" id="plantoes-sol"></div>
-        <input type="hidden" id="troca-data-sol">
-        <input type="hidden" id="troca-turno-sol">
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="form-group">
-        <label class="form-label">Nome do substituto</label>
-        <select class="form-select" id="troca-parceiro" onchange="atualizarPlantoesParceiro()">
-          <option value="">Selecione o colega...</option>
-        </select>
-      </div>
-      <div class="form-group" id="grupo-plantoes-par" style="display:none">
-        <label class="form-label">Plantão do substituto (que você assume)</label>
-        <div class="plantoes-container" id="plantoes-par"></div>
-        <input type="hidden" id="troca-data-sub">
-        <input type="hidden" id="troca-turno-sub">
-      </div>
-
-      <div id="alerta-carga" class="info-box amber" style="display:none">⚠️ <strong>Atenção:</strong> Os acadêmicos selecionados têm cargas horárias diferentes. A troca pode não ser aprovada.</div>
-      <div id="ok-carga" class="info-box green" style="display:none">✅ Cargas horárias compatíveis. A troca é elegível para aprovação.</div>
-
-      <div class="form-group">
-        <label class="form-label">Justificativa</label>
-        <textarea class="form-textarea" id="troca-motivo" placeholder="Ex: compromisso pessoal, viagem, consulta médica..."></textarea>
-      </div>
-      <button class="btn btn-primary" id="btn-troca" onclick="solicitarTroca()">Enviar solicitação</button>
-    </div>
-  </div>
-  <div class="success-screen" id="success-troca">
-    <div class="success-icon">🔄</div>
-    <h2>Solicitação enviada!</h2>
-    <p>A secretaria irá analisar sua solicitação e responderá em breve.<br><br>Acompanhe o status na aba <strong>Pendentes</strong>.</p>
-    <br>
-    <button class="btn btn-primary" onclick="resetTroca()">Nova solicitação</button>
-  </div>
-</div>
-
-<!-- PENDENTES -->
-<div class="page content" id="page-pendentes">
-  <div class="action-card">
-    <h3>⏳ Minhas solicitações</h3>
-    <p>Veja o status das suas solicitações de troca.</p>
     <div class="form-group">
-      <label class="form-label">Consultar por nome</label>
-      <select class="form-select" id="pend-nome"><option value="">Selecione seu nome...</option></select>
+      <label class="form-label">Número de matrícula (só números)</label>
+      <input type="number" class="form-input" id="login-matricula" placeholder="Ex: 3939634" onkeydown="if(event.key==='Enter') fazerLogin()">
     </div>
-    <button class="btn btn-primary" onclick="consultarPendentes()">Consultar</button>
+    <button class="btn-login" onclick="fazerLogin()">Entrar</button>
+    <div class="login-error" id="login-error">Matrícula não encontrada. Verifique e tente novamente.</div>
   </div>
-  <div id="resultado-pendentes"></div>
+</div>
+
+<!-- APP PRINCIPAL -->
+<div class="app" id="app">
+  <div class="header">
+    <div class="header-top">
+      <div><h1>Escala HMSA</h1><p>Emergência · Acadêmicos</p></div>
+      <div class="header-user">
+        <span class="user-name" id="user-iniciais">--</span>
+        <span class="header-badge" id="today-badge">Carregando...</span>
+        <button class="btn-sair" onclick="fazerLogout()" title="Sair">✕</button>
+      </div>
+    </div>
+    <div class="day-scroll">
+      <button class="day-btn" data-day="1">2ª</button>
+      <button class="day-btn" data-day="2">3ª</button>
+      <button class="day-btn" data-day="3">4ª</button>
+      <button class="day-btn" data-day="4">5ª</button>
+      <button class="day-btn" data-day="5">6ª</button>
+      <button class="day-btn" data-day="6">Sáb</button>
+      <button class="day-btn" data-day="0">Dom</button>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showPage('escala', this)">📋 Escala</div>
+    <div class="nav-tab" onclick="showPage('presenca', this)">✅ Presença</div>
+    <div class="nav-tab" onclick="showPage('troca', this)">🔄 Troca</div>
+    <div class="nav-tab" onclick="showPage('pendentes', this)">⏳ Pendentes</div>
+  </div>
+
+  <!-- ESCALA -->
+  <div class="page active content" id="page-escala">
+    <div id="turno-dia">
+      <div class="section-header"><div class="section-dot dia"></div><span class="section-title">Turno Diurno</span><div class="section-line"></div></div>
+      <div id="lista-dia"></div>
+    </div>
+    <div id="turno-noite">
+      <div class="section-header"><div class="section-dot noite"></div><span class="section-title">Turno Noturno</span><div class="section-line"></div></div>
+      <div id="lista-noite"></div>
+    </div>
+  </div>
+
+  <!-- PRESENÇA -->
+  <div class="page content" id="page-presenca">
+    <div id="form-presenca">
+      <div class="action-card">
+        <h3>✅ Confirmar Presença</h3>
+        <p>Confirme sua presença no plantão de hoje. Faça isso ao chegar no hospital.</p>
+        <div class="form-group">
+          <label class="form-label">Matrícula</label>
+          <input type="text" class="form-input" id="pres-matricula" disabled>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Seu nome</label>
+          <input type="text" class="form-input" id="pres-nome" disabled>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Turno</label>
+          <select class="form-select" id="pres-turno">
+            <option value="Dia (07h-19h)">Dia (07h–19h)</option>
+            <option value="Noite (19h-07h)">Noite (19h–07h)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Data do plantão</label>
+          <input type="date" class="form-input" id="pres-data">
+        </div>
+        <div class="info-box blue">📍 Ao confirmar, a secretaria é notificada automaticamente da sua chegada.</div>
+        <button class="btn btn-green" id="btn-presenca" onclick="confirmarPresenca()">Confirmar chegada</button>
+      </div>
+    </div>
+    <div class="success-screen" id="success-presenca">
+      <div class="success-icon">✅</div>
+      <h2>Presença confirmada!</h2>
+      <p>Sua chegada foi registrada.<br>Bom plantão!</p>
+      <br>
+      <button class="btn btn-primary" onclick="resetPresenca()">Nova confirmação</button>
+    </div>
+  </div>
+
+  <!-- TROCA -->
+  <div class="page content" id="page-troca">
+    <div id="form-troca">
+      <div class="action-card">
+        <h3>🔄 Solicitar Troca de Plantão</h3>
+        <p>Preencha os dados da troca. A secretaria irá analisar e confirmar a viabilidade.</p>
+        <div class="info-box amber">⚠️ Trocas só são possíveis entre acadêmicos com a <strong>mesma carga horária</strong> (12h com 12h, 24h com 24h).</div>
+
+        <div class="form-group">
+          <label class="form-label">Seu nome</label>
+          <input type="text" class="form-input" id="troca-solicitante-display" disabled>
+          <input type="hidden" id="troca-solicitante">
+        </div>
+        <div class="form-group" id="grupo-plantoes-sol">
+          <label class="form-label">Seu plantão (que quer ceder)</label>
+          <div class="plantoes-container" id="plantoes-sol"></div>
+          <input type="hidden" id="troca-data-sol">
+          <input type="hidden" id="troca-turno-sol">
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="form-group">
+          <label class="form-label">Nome do substituto</label>
+          <select class="form-select" id="troca-parceiro" onchange="atualizarPlantoesParceiro()">
+            <option value="">Selecione o colega...</option>
+          </select>
+        </div>
+        <div class="form-group" id="grupo-plantoes-par" style="display:none">
+          <label class="form-label">Plantão do substituto (que você assume)</label>
+          <div class="plantoes-container" id="plantoes-par"></div>
+          <input type="hidden" id="troca-data-sub">
+          <input type="hidden" id="troca-turno-sub">
+        </div>
+
+        <div id="alerta-carga" class="info-box amber" style="display:none">⚠️ <strong>Atenção:</strong> Os acadêmicos selecionados têm cargas horárias diferentes. A troca pode não ser aprovada.</div>
+        <div id="ok-carga" class="info-box green" style="display:none">✅ Cargas horárias compatíveis. A troca é elegível para aprovação.</div>
+
+        <div class="form-group">
+          <label class="form-label">Justificativa</label>
+          <textarea class="form-textarea" id="troca-motivo" placeholder="Ex: compromisso pessoal, viagem, consulta médica..."></textarea>
+        </div>
+        <button class="btn btn-primary" id="btn-troca" onclick="solicitarTroca()">Enviar solicitação</button>
+      </div>
+    </div>
+    <div class="success-screen" id="success-troca">
+      <div class="success-icon">🔄</div>
+      <h2>Solicitação enviada!</h2>
+      <p>A secretaria irá analisar sua solicitação e responderá em breve.<br><br>Acompanhe o status na aba <strong>Pendentes</strong>.</p>
+      <br>
+      <button class="btn btn-primary" onclick="resetTroca()">Nova solicitação</button>
+    </div>
+  </div>
+
+  <!-- PENDENTES -->
+  <div class="page content" id="page-pendentes">
+    <div class="action-card">
+      <h3>⏳ Minhas solicitações</h3>
+      <p>Veja o status das suas solicitações de troca.</p>
+      <div class="info-box blue" id="pend-info"></div>
+      <button class="btn btn-primary" onclick="consultarPendentes()">Consultar</button>
+    </div>
+    <div id="resultado-pendentes"></div>
+  </div>
 </div>
 
 <script>
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7LAhApKBZTDlIrE3qpRDf_kvKHg-B1B0SV7YIBiqvEsa_9H38lBJRRUv4CdEryOPx9g/exec";
 
+// =====================================================
+// MATRÍCULAS — só números (sem pontos e traço)
+// =====================================================
+const MATRICULAS = {
+  "3939634": "Amanda Caetano Tostes",
+  "3935855": "Ana Paula Oliveira Cavalcante",
+  "3935806": "Bárbara Van Steen Proner Ramos",
+  "3939618": "Bernardo Reuter Affonso",
+  "3935814": "Bruna Cirne Nunes Machado",
+  "3939576": "Camila Mendes Peixoto",
+  "3935772": "Carla Ferreira Franco Vieira",
+  "3939568": "Conceição Christina Rigo Vale",
+  "3939667": "Daniel David Boianovsky",
+  "3939626": "Deborah Custódio Lima",
+  "3936334": "Felipe Biot Costa Pinto",
+  "3935756": "Francisco Luís Nunes Teixeira da Silva",
+  "3939709": "Gabriel Rangel Costa Cardoso",
+  "3935764": "Gustavo Neotti do Nascimento",
+  "3939592": "Ícaro Maia Silva",
+  "3935731": "Igor Araujo Gomes",
+  "3935913": "Isabela Campos Oliveira Rascão",
+  "3939584": "Isabela Carolina Alves do Nascimento",
+  "3939550": "Isabela Silva Erthal Vieira",
+  "3935681": "Jéssica Marinho Motta da Silva",
+  "3935699": "João Pedro Lopes Pinto Loja",
+  "3935889": "Julia Azevedo Teixeira de Macedo",
+  "3935673": "Julia Machado Pereira",
+  "3935780": "Laura Muniz de Lima Leitão",
+  "3936326": "Letícia Chaves Sias Quadros",
+  "3940210": "Lucas Garcia Deano Outeiro",
+  "3939675": "Lucas Miossi",
+  "3939691": "Luís Felipe Jesus Teixeira da Silva",
+  "3939683": "Maria Aparecida Mendes de Oliveira",
+  "3935848": "Mateus Amado Peralta Boechat",
+  "3935822": "Pedro Antonio Machado Pereira dos Santos",
+  "3936366": "Pedro Henrique Melo da Silva",
+  "3935749": "Raquel Lopes Emidio",
+  "3935947": "Samara Cristina da Silva Cabral",
+  "3935939": "Thiago Magalhães da Cruz Paula",
+  "3935863": "Thomás Barbosa Leal de Souza",
+  "3939733": "Valentina Maria Ganem Teixeira",
+  "3935798": "Vitória Maria Porciuncula",
+};
+
+// =====================================================
+// SESSÃO DO USUÁRIO
+// =====================================================
+let usuarioLogado = null;
+
+function fazerLogin() {
+  const matricula = document.getElementById('login-matricula').value.trim();
+  const nome = MATRICULAS[matricula];
+
+  if (!nome) {
+    document.getElementById('login-error').style.display = 'block';
+    return;
+  }
+
+  usuarioLogado = { matricula, nome };
+  sessionStorage.setItem('hmsa_user', JSON.stringify(usuarioLogado));
+
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  iniciarApp();
+}
+
+function fazerLogout() {
+  usuarioLogado = null;
+  sessionStorage.removeItem('hmsa_user');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('login-matricula').value = '';
+  document.getElementById('login-error').style.display = 'none';
+}
+
+function verificarSessao() {
+  const salvo = sessionStorage.getItem('hmsa_user');
+  if (salvo) {
+    usuarioLogado = JSON.parse(salvo);
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    iniciarApp();
+  }
+}
+
+// =====================================================
+// ESCALA
+// =====================================================
 const ESCALA = {
   dia: {
     1: [
@@ -263,7 +385,6 @@ const ESCALA = {
       { nome: "Gabriel Rangel Cardoso", iniciais: "GR", equipe: "Equipe Alvaro Ramos" },
       { nome: "Bárbara Van Steen", iniciais: "BV", equipe: "Equipe Alvaro Ramos" },
       { nome: "Isabela Campos Oliveira", iniciais: "IC", equipe: "Equipe Alvaro Ramos" },
-
     ],
     3: [
       { nome: "Ícaro Maia Silva", iniciais: "IM", equipe: "Equipe Daniel de Almeida" },
@@ -388,38 +509,86 @@ const ACADEMICOS = [
   { nome: "Vitória Maria Porciuncula", carga: 24 },
 ].sort((a, b) => a.nome.localeCompare(b.nome));
 
-// Busca plantões de um acadêmico na escala e calcula as próximas 8 datas
+function calcularDiaEscala() {
+  const agora = new Date();
+  const hora = agora.getHours();
+  if (hora < 7) { const ontem = new Date(agora); ontem.setDate(ontem.getDate()-1); return { dia: ontem.getDay(), turnoAtual: 'noite' }; }
+  if (hora < 19) return { dia: agora.getDay(), turnoAtual: 'dia' };
+  return { dia: agora.getDay(), turnoAtual: 'noite' };
+}
+
+const { dia: diaInicial, turnoAtual } = calcularDiaEscala();
+let currentDay = diaInicial;
+
+function iniciarApp() {
+  const u = usuarioLogado;
+  const primeiroNome = u.nome.split(' ')[0];
+  const iniciais = u.nome.split(' ').filter((_,i,a) => i===0||i===a.length-1).map(n=>n[0]).join('');
+
+  // Header
+  document.getElementById('user-iniciais').textContent = primeiroNome;
+
+  // Presença — preenche e bloqueia
+  document.getElementById('pres-matricula').value = u.matricula;
+  document.getElementById('pres-nome').value = u.nome;
+
+  // Troca — preenche solicitante e bloqueia
+  document.getElementById('troca-solicitante').value = u.nome;
+  document.getElementById('troca-solicitante-display').value = u.nome;
+
+  // Preenche select de parceiros (excluindo o próprio usuário)
+  const sel = document.getElementById('troca-parceiro');
+  sel.innerHTML = '<option value="">Selecione o colega...</option>';
+  ACADEMICOS.forEach(a => {
+    if (a.nome !== u.nome) {
+      const opt = document.createElement('option');
+      opt.value = a.nome;
+      opt.textContent = a.nome;
+      sel.appendChild(opt);
+    }
+  });
+
+  // Pendentes
+  document.getElementById('pend-info').textContent = `Consultando solicitações de ${primeiroNome}...`;
+
+  // Data e turno
+  const hoje = new Date().toISOString().split('T')[0];
+  document.getElementById('pres-data').value = hoje;
+  document.getElementById('pres-turno').value = turnoAtual === 'noite' ? 'Noite (19h-07h)' : 'Dia (07h-19h)';
+
+  // Badge
+  const dias = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const turnoLabel = turnoAtual === 'noite' ? '🌙 Noite' : '☀️ Dia';
+  document.getElementById('today-badge').textContent = `${dias[diaInicial]} · ${turnoLabel}`;
+
+  // Plantões do solicitante
+  const plantoesSol = getProximosPlantoes(u.nome);
+  renderPlantoes('plantoes-sol', plantoesSol, 'troca-data-sol', 'troca-turno-sol');
+
+  renderDayButtons();
+  renderEscala(currentDay, turnoAtual);
+}
+
 function getProximosPlantoes(nomeAcademico, qtd = 8) {
   const plantoes = [];
   const hoje = new Date();
   hoje.setHours(0, 0, 0, 0);
-
-  // Encontra em quais dias/turnos o acadêmico aparece
-  // Usa primeiro nome + último sobrenome para compatibilidade entre ESCALA e ACADEMICOS
   const primeiroNome = nomeAcademico.split(' ')[0].toLowerCase();
   const partesNome = nomeAcademico.toLowerCase().split(' ');
   const slots = [];
   ['dia', 'noite'].forEach(turno => {
     Object.entries(ESCALA[turno]).forEach(([diaSemana, lista]) => {
       const encontrado = lista.find(p => {
-        const pNome = p.nome.toLowerCase();
-        const pPartes = pNome.split(' ');
-        // Verifica se primeiro nome bate E pelo menos um sobrenome coincide
+        const pPartes = p.nome.toLowerCase().split(' ');
         return pPartes[0] === primeiroNome && partesNome.some((parte, i) => i > 0 && pPartes.includes(parte));
       });
       if (encontrado) slots.push({ diaSemana: parseInt(diaSemana), turno });
     });
   });
-
   if (slots.length === 0) return [];
-
-  // Calcula as próximas 8 ocorrências
   let data = new Date(hoje);
-  let count = 0;
-  const maxDias = 90; // busca em até 90 dias
-  let d = 0;
-
-  while (count < qtd && d < maxDias) {
+  let count = 0, d = 0;
+  while (count < qtd && d < 90) {
     const diaSemana = data.getDay();
     slots.forEach(slot => {
       if (slot.diaSemana === diaSemana && count < qtd) {
@@ -434,20 +603,17 @@ function getProximosPlantoes(nomeAcademico, qtd = 8) {
     data.setDate(data.getDate() + 1);
     d++;
   }
-
   return plantoes;
 }
 
-function renderPlantoes(containerId, plantoes, hiddenDataId, hiddenTurnoId, cssClass) {
+function renderPlantoes(containerId, plantoes, hiddenDataId, hiddenTurnoId) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
-
   if (plantoes.length === 0) {
     container.innerHTML = '<div class="sem-plantao">Nenhum plantão encontrado nos próximos 90 dias.</div>';
     return;
   }
-
-  plantoes.forEach((p, i) => {
+  plantoes.forEach(p => {
     const tag = document.createElement('button');
     tag.type = 'button';
     tag.className = `plantao-tag ${p.turnoKey}-tag`;
@@ -462,67 +628,16 @@ function renderPlantoes(containerId, plantoes, hiddenDataId, hiddenTurnoId, cssC
   });
 }
 
-function atualizarPlantoesSolicitante() {
-  const nome = document.getElementById('troca-solicitante').value;
-  const grupo = document.getElementById('grupo-plantoes-sol');
-  document.getElementById('troca-data-sol').value = '';
-  document.getElementById('troca-turno-sol').value = '';
-
-  if (!nome) { grupo.style.display = 'none'; return; }
-
-  const plantoes = getProximosPlantoes(nome);
-  grupo.style.display = 'block';
-  renderPlantoes('plantoes-sol', plantoes, 'troca-data-sol', 'troca-turno-sol', 'sol');
-  verificarCargaHoraria();
-}
-
 function atualizarPlantoesParceiro() {
   const nome = document.getElementById('troca-parceiro').value;
   const grupo = document.getElementById('grupo-plantoes-par');
   document.getElementById('troca-data-sub').value = '';
   document.getElementById('troca-turno-sub').value = '';
-
   if (!nome) { grupo.style.display = 'none'; return; }
-
   const plantoes = getProximosPlantoes(nome);
   grupo.style.display = 'block';
-  renderPlantoes('plantoes-par', plantoes, 'troca-data-sub', 'troca-turno-sub', 'par');
+  renderPlantoes('plantoes-par', plantoes, 'troca-data-sub', 'troca-turno-sub');
   verificarCargaHoraria();
-}
-
-function calcularDiaEscala() {
-  const agora = new Date();
-  const hora = agora.getHours();
-  if (hora < 7) { const ontem = new Date(agora); ontem.setDate(ontem.getDate()-1); return { dia: ontem.getDay(), turnoAtual: 'noite' }; }
-  if (hora < 19) return { dia: agora.getDay(), turnoAtual: 'dia' };
-  return { dia: agora.getDay(), turnoAtual: 'noite' };
-}
-
-const { dia: diaInicial, turnoAtual } = calcularDiaEscala();
-let currentDay = diaInicial;
-
-function init() {
-  const selects = ['pres-nome', 'troca-solicitante', 'troca-parceiro', 'pend-nome'];
-  selects.forEach(id => {
-    const sel = document.getElementById(id);
-    ACADEMICOS.forEach(a => {
-      const opt = document.createElement('option');
-      opt.value = a.nome;
-      opt.textContent = a.nome;
-      sel.appendChild(opt);
-    });
-  });
-
-  const hoje = new Date().toISOString().split('T')[0];
-  document.getElementById('pres-data').value = hoje;
-  document.getElementById('pres-turno').value = turnoAtual === 'noite' ? 'Noite (19h-07h)' : 'Dia (07h-19h)';
-
-  const dias = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-  const turnoLabel = turnoAtual === 'noite' ? '🌙 Noite' : '☀️ Dia';
-  document.getElementById('today-badge').textContent = `${dias[diaInicial]} · ${turnoLabel}`;
-
-  renderDayButtons();
-  renderEscala(currentDay, turnoAtual);
 }
 
 function renderDayButtons() {
@@ -547,7 +662,9 @@ function renderEscala(day, turnoDestaque) {
 }
 
 function cardHTML(p, turno) {
-  return `<div class="person-card ${turno}"><div class="avatar ${turno}">${p.iniciais}</div><div class="person-info"><div class="person-name">${p.nome}</div><div class="person-meta"><span class="shift-badge ${turno}">${turno==='dia'?'Dia':'Noite'}</span><span class="team-name">${p.equipe}</span></div></div></div>`;
+  const euClass = usuarioLogado && p.nome.toLowerCase().includes(usuarioLogado.nome.split(' ')[0].toLowerCase()) ? ' eu' : '';
+  const euBadge = euClass ? '<span class="eu-badge">Você</span>' : '';
+  return `<div class="person-card ${turno}${euClass}"><div class="avatar ${turno}">${p.iniciais}</div><div class="person-info"><div class="person-name">${p.nome}</div><div class="person-meta"><span class="shift-badge ${turno}">${turno==='dia'?'Dia':'Noite'}</span><span class="team-name">${p.equipe}</span>${euBadge}</div></div></div>`;
 }
 
 function showPage(id, el) {
@@ -558,7 +675,7 @@ function showPage(id, el) {
 }
 
 function verificarCargaHoraria() {
-  const sol = document.getElementById('troca-solicitante').value;
+  const sol = usuarioLogado?.nome;
   const par = document.getElementById('troca-parceiro').value;
   if (!sol || !par) return;
   const cargaSol = ACADEMICOS.find(a => a.nome === sol)?.carga;
@@ -576,11 +693,11 @@ async function enviarDados(dados) {
 }
 
 async function confirmarPresenca() {
-  const matricula = document.getElementById('pres-matricula').value.trim();
-  const nome = document.getElementById('pres-nome').value;
+  const matricula = usuarioLogado.matricula;
+  const nome = usuarioLogado.nome;
   const turno = document.getElementById('pres-turno').value;
   const data = document.getElementById('pres-data').value;
-  if (!matricula || !nome || !data) { alert('Preencha todos os campos obrigatórios.'); return; }
+  if (!data) { alert('Selecione a data do plantão.'); return; }
   const btn = document.getElementById('btn-presenca');
   btn.textContent = 'Enviando...'; btn.disabled = true;
   try {
@@ -594,21 +711,15 @@ async function confirmarPresenca() {
 }
 
 async function solicitarTroca() {
-  const matricula = document.getElementById('troca-matricula').value.trim();
-  const sol       = document.getElementById('troca-solicitante').value;
+  const matricula = usuarioLogado.matricula;
+  const sol       = usuarioLogado.nome;
   const data_sol  = document.getElementById('troca-data-sol').value;
   const turno_sol = document.getElementById('troca-turno-sol').value;
   const sub       = document.getElementById('troca-parceiro').value;
   const data_sub  = document.getElementById('troca-data-sub').value;
   const turno_sub = document.getElementById('troca-turno-sub').value;
   const motivo    = document.getElementById('troca-motivo').value.trim();
-
-  if (!matricula || !sol || !data_sol || !sub || !data_sub || !motivo) {
-    alert('Preencha todos os campos, incluindo selecionar os plantões de ambos.');
-    return;
-  }
-  if (sol === sub) { alert('Você não pode trocar com você mesmo.'); return; }
-
+  if (!data_sol || !sub || !data_sub || !motivo) { alert('Preencha todos os campos, incluindo selecionar os plantões de ambos.'); return; }
   const btn = document.getElementById('btn-troca');
   btn.textContent = 'Enviando...'; btn.disabled = true;
   try {
@@ -622,16 +733,12 @@ async function solicitarTroca() {
 }
 
 function consultarPendentes() {
-  const nome = document.getElementById('pend-nome').value;
-  if (!nome) { alert('Selecione seu nome.'); return; }
   document.getElementById('resultado-pendentes').innerHTML = `<div class="action-card"><p style="font-size:13px;color:var(--gray-500);text-align:center;padding:20px 0">📋 As solicitações de troca são analisadas pela secretaria.<br><br>Você será contactado pelo WhatsApp ou e-mail com a decisão.<br><br><strong>Prazo médio: 1 dia útil</strong></p></div>`;
 }
 
 function resetPresenca() {
   document.getElementById('form-presenca').style.display = 'block';
   document.getElementById('success-presenca').style.display = 'none';
-  document.getElementById('pres-matricula').value = '';
-  document.getElementById('pres-nome').value = '';
   const btn = document.getElementById('btn-presenca');
   btn.textContent = 'Confirmar chegada'; btn.disabled = false;
 }
@@ -639,11 +746,8 @@ function resetPresenca() {
 function resetTroca() {
   document.getElementById('form-troca').style.display = 'block';
   document.getElementById('success-troca').style.display = 'none';
-  document.getElementById('troca-matricula').value = '';
-  document.getElementById('troca-solicitante').value = '';
   document.getElementById('troca-parceiro').value = '';
   document.getElementById('troca-motivo').value = '';
-  document.getElementById('grupo-plantoes-sol').style.display = 'none';
   document.getElementById('grupo-plantoes-par').style.display = 'none';
   document.getElementById('alerta-carga').style.display = 'none';
   document.getElementById('ok-carga').style.display = 'none';
@@ -651,7 +755,8 @@ function resetTroca() {
   btn.textContent = 'Enviar solicitação'; btn.disabled = false;
 }
 
-init();
+// Verifica sessão ao carregar
+verificarSessao();
 </script>
 </body>
 </html>
